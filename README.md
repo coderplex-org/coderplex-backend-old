@@ -1,4 +1,4 @@
-# coderplex-api
+# coderplex-backend
 
 > Coderplex.org API server
 
@@ -12,10 +12,13 @@ Getting up and running is as easy.
 
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 2. Clone this repo
+    ```
+    git clone git@github.com:coderplex/coderplex-backend.git
+    ```
 3. Install your dependencies
 
     ```
-    cd path/to/coderplex-api; npm install
+    cd path/to/coderplex-backend; npm install
     ```
 4. Rename `.env.sample` to `.env`
 
