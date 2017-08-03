@@ -13,7 +13,7 @@ Getting up and running is as easy.
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 2. Clone this repo
     ```
-    git clone git@github.com:coderplex/coderplex-backend.git
+    git clone https://github.com/coderplex/coderplex-backend.git
     ```
 3. Install your dependencies
 
