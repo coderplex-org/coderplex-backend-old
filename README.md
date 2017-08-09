@@ -27,7 +27,7 @@ Getting up and running is as easy.
     ```
 5. Get GitHub And LinkedIn OAUTH `client_id` and `client_secret` 
     - Follow [this guide for github](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/registering-oauth-apps/) and [this guide for linkedin](https://developer.linkedin.com/docs/oauth2)
-    - Use these as OAUTH redirect URL while registering
+    - Use these as Authorization callback URL while registering
         - For Github `http://localhost:4000/auth/github/callback`
         - For LinkedIn `http://localhost:4000/auth/linkedin/callback`
     - And finally assign `client_id` and `client_secret` of each in `.env` file
