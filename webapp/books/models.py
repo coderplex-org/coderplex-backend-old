@@ -6,6 +6,7 @@ from django.db import models
 class CurriculumBook(models.Model):
     title = models.CharField(max_length=255, db_index=True)
     slug = models.SlugField()
+    image = models.ImageField(default=None, null=True, blank=True)
     description = models.TextField()
     
     created_by = models.ForeignKey('auth.User')
