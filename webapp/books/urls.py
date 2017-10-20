@@ -7,4 +7,6 @@ urlpatterns = [
 
     url(r'^chapters$', views.ChapterViewSet.as_view({'get': 'list'})),
     url(r'^chapter/(?P<pk>[0-9]+)$', views.ChapterViewSet.as_view({'get': 'retrieve'})),
+    
+    
 ]

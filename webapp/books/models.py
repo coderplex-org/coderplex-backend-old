@@ -24,6 +24,8 @@ class Chapter(models.Model):
     slug = models.SlugField()
     content = models.TextField()
     pages = models.ManyToManyField('Page', through='ChapterPageRelationShip')
+    # book = models.ForeignKey(Book)
+    # position = models.PositiveIntegerField()
 
     created_by = models.ForeignKey('auth.User')
     created_at = models.DateTimeField(auto_now_add=True)
