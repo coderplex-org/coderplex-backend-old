@@ -14,7 +14,7 @@ pip install -r requirements/requirements.txt
 
 ### Running in local
 
-```
+```bash
 source venv/bin/activate # python3
 python webapp/manage.py runserver # server accessible at localhost:8000
 
