@@ -29,5 +29,5 @@ class HelloWordView(views.APIView):
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('books.urls')),
-    url(r'^', HelloWordView.as_view()),
+    url(r'^$', HelloWordView.as_view()),
 ]
