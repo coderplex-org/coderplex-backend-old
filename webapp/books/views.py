@@ -51,12 +51,3 @@ class ChapterViewSet(viewsets.ModelViewSet):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
 
-
-class ChapterPagesListAPIView(APIView):
-    
-    def get(self, request, book, chapter, format=None, **kwargs):
-        book = get_object_or_404(Book, pk=book) # TODO - slug or pk?
-        chapter = get_object_or_404(Chapter, pk=chapter,)
-        pages = chapter.pages.all()
-        serializer = ChapterDetailSerializer(pages, many=True)
-        return Response(serializer.data)
