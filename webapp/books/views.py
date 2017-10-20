@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Book, Chapter, Page
-from .serializers import BookSerializer, BookDetailSerializer, ChapterSerializer, ChapterDetailSerializer
+from .serializers import BookSerializer, BookDetailSerializer, \
+    ChapterSerializer, ChapterDetailSerializer, PageDetailSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import mixins, generics
@@ -46,6 +47,20 @@ class ChapterDetailView(mixins.RetrieveModelMixin,
         return self.retrieve(request, *args, **kwargs)
 
 
+class PageDetailView(mixins.RetrieveModelMixin,
+                        generics.GenericAPIView):
+    serializer_class = PageDetailSerializer
+    queryset = Page.objects.all()
+    
+    def get_object(self):
+        return get_object_or_404(Page,
+                                 chapter__slug=self.kwargs['chapter'],
+                                 slug=self.kwargs['slug'])
+    
+    def get(self, request, chapter, slug, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+    
+    
 class ChapterViewSet(viewsets.ModelViewSet):
     model = Chapter
     serializer_class = ChapterSerializer

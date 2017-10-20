@@ -33,6 +33,16 @@ class PageSerializer(serializers.ModelSerializer):
                   'updated_by', 'created_by')
 
 
+class PageDetailSerializer(serializers.ModelSerializer):
+    created_by = UserSerializerShort()
+    updated_by = UserSerializerShort()
+    
+    class Meta:
+        model = Page
+        fields = ('id', 'title', 'slug', 'content', 'updated_at',
+                  'updated_by', 'created_by')
+
+
 class PageShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
