@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import CurriculumBook
-from .serializers import CurriculumBookSerializer
+from .models import Book
+from .serializers import BookSerializer
 # Create your views here.
 
 
-class CurriculumBookViewset(viewsets.ModelViewSet):
-    model = CurriculumBook
-    serializer_class = CurriculumBookSerializer
-    queryset = CurriculumBook.objects.all()
+class BookViewSet(viewsets.ModelViewSet):
+    model = Book
+    serializer_class = BookSerializer
+    queryset = Book.objects.all()

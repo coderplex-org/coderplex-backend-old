@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import CurriculumBook
+from .models import Book
 
 
-class CurriculumBookSerializer(serializers.ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CurriculumBook
+        model = Book
         fields = ('id', 'title', 'slug', 'image', 'description', 'updated_at')
