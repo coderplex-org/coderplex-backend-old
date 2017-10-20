@@ -15,8 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework import views
+from rest_framework import response
+
+
+class HelloWordView(views.APIView):
+    # TODO: Move this to some generic app
+
+    def get(self, request, **kwargs):
+        return response.Response({"message": "Hello World!"})
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('books.urls')),
+    url(r'^', HelloWordView.as_view()),
 ]
