@@ -19,3 +19,11 @@ source venv/bin/activate # python3
 python webapp/manage.py runserver # server accessible at localhost:8000
 
 ```
+
+
+## APIs List
+
+1. http://localhost:8000/books
+2. http://localhost:8000/book/laravel-curiculum
+3. http://localhost:8000/book/laravel-curiculum/c/chapter-1
+4. http://localhost:8000/book/laravel-curiculum/c/chapter-1/introduction-to-laravel

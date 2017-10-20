@@ -33,11 +33,21 @@ class PageSerializer(serializers.ModelSerializer):
                   'updated_by', 'created_by')
 
 
+class PageShortSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Page
+        fields = ('id', 'title', 'slug', 'updated_at')
+
+
 class ChapterDetailSerializer(serializers.ModelSerializer):
+    pages = serializers.SerializerMethodField()
     created_by = UserSerializerShort()
     updated_by = UserSerializerShort()
-    pages = PageSerializer(many=True)
     
+    def get_pages(self, obj):
+        pages = Page.objects.filter(chapter=obj).order_by('position')
+        return PageShortSerializer(pages, many=True).data
+
     class Meta:
         model = Chapter
         fields = ('id', 'title', 'slug', 'content', 'updated_at', 'pages',
@@ -51,10 +61,14 @@ class ChapterShortSerializer(serializers.ModelSerializer):
         
         
 class BookDetailSerializer(serializers.ModelSerializer):
-    chapters = ChapterShortSerializer(many=True)
+    chapters = serializers.SerializerMethodField()
     created_by = UserSerializerShort()
     updated_by = UserSerializerShort()
     
+    def get_chapters(self, obj):
+        chapters = Chapter.objects.filter(book=obj).order_by('position')
+        return ChapterShortSerializer(chapters, many=True).data
+
     class Meta:
         model = Book
         fields = ('id', 'title', 'slug', 'image', 'description', 'chapters',

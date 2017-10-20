@@ -10,5 +10,5 @@ class GenericAdmin(admin.ModelAdmin):
 admin.site.register(models.Book, GenericAdmin)
 admin.site.register(models.Chapter, GenericAdmin)
 admin.site.register(models.Page, GenericAdmin)
-admin.site.register(models.ChapterPageRelationShip)
-admin.site.register(models.BookChapterRelationShip)
+# admin.site.register(models.ChapterPageRelationShip)
+# admin.site.register(models.BookChapterRelationShip)

@@ -4,6 +4,7 @@ from .models import Book, Chapter, Page
 from .serializers import BookSerializer, BookDetailSerializer, ChapterSerializer, ChapterDetailSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import mixins, generics
 from rest_framework.generics import get_object_or_404
 from django.db.models.query import QuerySet
 
@@ -20,7 +21,31 @@ class BookViewSet(viewsets.ModelViewSet):
         serializer = BookDetailSerializer(instance)
         return Response(serializer.data)
     
+
+class BookDetailView(mixins.RetrieveModelMixin,
+                    generics.GenericAPIView):
+    serializer_class = BookDetailSerializer
+    queryset = Book.objects.all()
+    lookup_field = 'slug'
     
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
+class ChapterDetailView(mixins.RetrieveModelMixin,
+                    generics.GenericAPIView):
+    serializer_class = ChapterDetailSerializer
+    queryset = Chapter.objects.all()
+    
+    def get_object(self):
+        return get_object_or_404(Chapter,
+                                 book__slug=self.kwargs['book'],
+                                 slug=self.kwargs['chapter'])
+    
+    def get(self, request, book, chapter, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+
 class ChapterViewSet(viewsets.ModelViewSet):
     model = Chapter
     serializer_class = ChapterSerializer
