@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from .models import Book, Chapter
 from member.serializers import UserSerializerShort
+from .models import Book, Chapter
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -14,13 +14,23 @@ class BookSerializer(serializers.ModelSerializer):
         
 
 class ChapterSerializer(serializers.ModelSerializer):
+    created_by = UserSerializerShort()
+    updated_by = UserSerializerShort()
+    
+    class Meta:
+        model = Chapter
+        fields = ('id', 'title', 'slug', 'content', 'updated_at',
+                  'updated_by', 'created_by')
+
+
+class ChapterShortSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chapter
         fields = ('id', 'title', 'slug', 'updated_at')
         
         
 class BookDetailSerializer(serializers.ModelSerializer):
-    chapters = ChapterSerializer(many=True)
+    chapters = ChapterShortSerializer(many=True)
     created_by = UserSerializerShort()
     updated_by = UserSerializerShort()
     
