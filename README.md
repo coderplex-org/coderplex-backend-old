@@ -8,7 +8,7 @@
 
 ```
 docker build -t production --build-arg build_env="production" -f Dockerfile .
-docker run --name coderplex-produciton  -d -p 15536:8000 production
+docker run --name coderplex-produciton  -d -p 8000:8000 production
 ```
 
 ### Setup in dev
