@@ -3,6 +3,14 @@
 
 **Note:** This repository uses **Python3.6** and  **Django 1.11.x**
 
+
+### Deploy Docker in Production
+
+```
+sudo docker build -t production --build-arg build_env="production" -f Dockerfile .
+sudo docker run --name coderplex-produciton  -d -p 15536:8000 production
+```
+
 ### Setup in dev
 
 ```bash
