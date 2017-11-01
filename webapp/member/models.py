@@ -4,8 +4,6 @@ from django.db.models.signals import post_save
 
 
 # Create your models here.
-
-
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name="user")
     avatar = models.URLField(blank=False, null=False, max_length=100)
