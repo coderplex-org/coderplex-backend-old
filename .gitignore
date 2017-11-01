@@ -1,3 +1,5 @@
+.idea
+*.pyc
 venv/
 webapp/static_assets
 webapp/static
