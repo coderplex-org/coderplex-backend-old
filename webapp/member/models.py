@@ -5,6 +5,10 @@ from django.db.models.signals import post_save
 
 # Create your models here.
 class UserProfile(models.Model):
+    """
+    This model is an extension of the User model that is inbuilt in django.
+    It is connected to django User model with a OneToOneField.
+    """
     user = models.OneToOneField(User, related_name="user")
     avatar = models.URLField(blank=False, null=False, max_length=100)
     mobile_number = models.CharField(max_length=20, blank=True, null=False, default="")
@@ -23,6 +27,13 @@ class UserProfile(models.Model):
 
 
 def create_user_profile(sender, instance, created, **kwargs):
+    """
+    This is a post save signal of django user inbuilt model triggers this method.
+    :param sender: The model which is responsible for the signal
+    :param instance: The instance that was just saved
+    :param created: The variable to check if the instance was created
+    :param kwargs: other Key value arguments
+    """
     if created:
         UserProfile.objects.create(user=instance)
 
