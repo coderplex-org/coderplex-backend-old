@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+  web:
+    build: .
+    command: uwsgi --http :8000 --wsgi-file coderplex_apis/wsgi.py --master
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

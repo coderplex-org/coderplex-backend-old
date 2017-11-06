@@ -13,10 +13,5 @@ WORKDIR /webapp
 
 RUN pip install -r /requirements/requirements.txt
 RUN pip install uwsgi
-
-RUN python manage.py collectstatic --noinput --verbosity=0
 RUN python manage.py migrate
 
-EXPOSE 8000
-
-CMD uwsgi --http :8000 --wsgi-file coderplex_apis/wsgi.py --master
