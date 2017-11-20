@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.linkedin',
 
     'member',
     'books'
@@ -169,4 +170,3 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER' : "member.serializers.UserDetailSerializer"
 }
-DEFAULT_FROM_EMAIL = 'pbteja1998@gmail.com'
