@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('books.urls')),
     url(r'^$', HelloWordView.as_view()),
+    url(r'^v1/', include('authentication.urls')),
 ]

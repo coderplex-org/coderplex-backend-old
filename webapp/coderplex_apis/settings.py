@@ -37,8 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+
     'member',
     'books'
 ]
@@ -77,16 +88,22 @@ WSGI_APPLICATION = 'coderplex_apis.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'HOST': 'db',
+#         'PORT': 5432,
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -141,3 +158,15 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
 }
+
+SITE_ID = 1
+REST_USE_JWT = True
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'optional'
+SOCIALACCOUNT_EMAIL_REQUIRED = False
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER' : "member.serializers.UserDetailSerializer"
+}
+DEFAULT_FROM_EMAIL = 'pbteja1998@gmail.com'
