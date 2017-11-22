@@ -29,9 +29,65 @@ python webapp/manage.py runserver # server accessible at localhost:8000
 ```
 
 
-## APIs List
+API endpoints
+=============
 
-1. http://localhost:8000/books
-2. http://localhost:8000/book/laravel-curiculum
-3. http://localhost:8000/book/laravel-curiculum/chapter-1
-4. http://localhost:8000/chapter/chapter-1/introduction-to-laravel
+Basic Authentication
+--------------------
+
+- `https://github.com/login/oauth/authorize`(GET)
+    >    - scope  (optional)
+    >    - client_id
+
+    > returns `code`
+
+- `https://www.linkedin.com/oauth/v2/authorization`(GET)
+    >    - scope   (optional)
+    >    - client_id
+    >    - response_type
+    >    - redirect_uri
+
+    > returns `code`
+
+    > `response_type` should take `code` as its value
+
+- `/v1/auth/<social>` (POST)
+    > social can be replaced by `github` or `linkedin`
+    >    - username
+    >    - email
+    >    - password
+
+    > returns {
+        "token": "",
+        "user": {
+            "pk": ,
+            "username": "",
+            "first_name": "",
+            "last_name": "",
+            "avatar": ""
+        }
+     }
+
+Other APIs
+-----------
+
+- `/book/<slug>` (GET)
+    > returns {
+                "id": ,
+                "title": "",
+                "slug": "",
+                "image": "",
+                "description": "",
+                "chapters": [],
+                "updated_by": {
+                        "first_name": "",
+                        "last_name": ""
+                 },
+                "created_by": {
+                    "first_name": "",
+                    "last_name": ""
+                 }
+               }
+
+- `/books` (GET)
+    > returns list of books
