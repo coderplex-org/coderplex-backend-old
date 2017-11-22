@@ -170,3 +170,11 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER' : "member.serializers.UserDetailSerializer"
 }
+
+DEFAULT_FROM_EMAIL='pbteja1998@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'pbteja1998@gmail.com'
+EMAIL_HOST_PASSWORD = ''

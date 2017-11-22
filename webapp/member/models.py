@@ -38,12 +38,13 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
                                   avatar = avatar_url,
                                   github_profile = github_profile,
                                  )
+            profile.save()
         elif sociallogin.account.provider == 'linkedin':
             linkedin_profile = sociallogin.account.get_profile_url()
             profile = UserProfile(user=user,
                                   avatar=avatar_url,
                                   linkedin_profile=linkedin_profile,
                                   )
+            profile.save()
 
     # in this signal I can retrieve the obj from SocialAccount
-    profile.save()
