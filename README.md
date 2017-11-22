@@ -53,9 +53,7 @@ Basic Authentication
 
 - `/v1/auth/<social>` (POST)
     > social can be replaced by `github` or `linkedin`
-    >    - username
-    >    - email
-    >    - password
+    >    - code
 
     > returns {
         "token": "",
