@@ -15,20 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework import views
-from rest_framework import response
-
-
-class HelloWordView(views.APIView):
-    # TODO: Move this to some generic app
-
-    def get(self, request, **kwargs):
-        return response.Response({"message": "Hello World!"})
-
+from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('books.urls')),
-    url(r'^$', HelloWordView.as_view()),
+    url(r'^$', views.HelloWordView.as_view()),
     url(r'^v1/', include('authentication.urls')),
+    url(r'^callback', views.SocialCodeView.as_view())
 ]

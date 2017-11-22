@@ -6,7 +6,10 @@ class UserDetailSerializer(serializers.ModelSerializer):
     avatar = serializers.SerializerMethodField()
 
     def get_avatar(self, obj):
-        return obj.profile.avatar
+        try:
+            return obj.profile.avatar
+        except:
+            return ""
 
     class Meta:
         model = User

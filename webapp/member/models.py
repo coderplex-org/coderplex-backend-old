@@ -27,8 +27,11 @@ class UserProfile(models.Model):
 @receiver(user_signed_up)
 def retrieve_social_data(request, user, sociallogin=None, **kwargs):
     """Signal, that gets extra data from sociallogin and put it to profile."""
+
     if sociallogin:
+
         avatar_url = sociallogin.account.get_avatar_url()
+
         if sociallogin.account.provider == 'github':
             github_profile = sociallogin.account.get_profile_url()
             profile = UserProfile(user=user,
