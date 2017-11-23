@@ -10,4 +10,4 @@ class HelloWordView(views.APIView):
 class SocialCodeView(views.APIView):
 
     def get(self, request, **kwargs):
-        return response.Response({"code": request.GET['code']})
+        return response.Response({"code": request.GET.get('code')})
