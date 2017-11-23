@@ -93,13 +93,8 @@ Other APIs
 -----------
 
 - `/book/<slug>` (GET)
-    > returns
-    - `/v1/auth/<social>` (POST)
-    > social can be replaced by `github` or `linkedin`
-    >    - code
 
-    > returns
-     
+    > returns     
      ```json
         {
             "id": "",
