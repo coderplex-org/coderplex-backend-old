@@ -168,6 +168,30 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = 'optional'
 SOCIALACCOUNT_EMAIL_REQUIRED = False
 SOCIALACCOUNT_QUERY_EMAIL = True
 
+SOCIALACCOUNT_PROVIDERS = \
+    {
+     'linkedin_oauth2': {
+            'SCOPE': ['r_emailaddress', 'r_basicprofile'],
+            'PROFILE_FIELDS': [
+                                'id',
+                                'first-name',
+                                'last-name',
+                                'formatted-name',
+                                'email-address',
+                                'headline',
+                                'industry',
+                                'location',
+                                'num-connections',
+                                'num-connections-capped',
+                                'picture-url',
+                                'public-profile-url',
+                                'positions',
+                                'summary'
+                              ]
+            }
+    }
+
+
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER' : "member.serializers.UserDetailSerializer"
 }

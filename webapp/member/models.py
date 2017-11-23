@@ -29,6 +29,8 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
     """Signal, that gets extra data from sociallogin and put it to profile."""
 
     if sociallogin:
+        print("provider",sociallogin.account.provider)
+        print("extra_data", sociallogin.account.extra_data)
 
         avatar_url = sociallogin.account.get_avatar_url()
         UserProfile.objects.create(user=user, avatar=avatar_url)
@@ -36,10 +38,14 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
         if sociallogin.account.provider == 'github':
             profile = UserProfile.objects.filter(user=user)[0]
             profile.github_profile = sociallogin.account.get_profile_url()
+            profile.short_bio = sociallogin.account.extra_data["bio"]
+            profile.job_status = sociallogin.account.extra_data["hireable"]
+            profile.company_name = sociallogin.account.extra_data["company"]
             profile.save()
-        elif sociallogin.account.provider == 'linkedin':
+        elif sociallogin.account.provider == 'linkedin_oauth2':
             profile = UserProfile.objects.filter(user=user)[0]
             profile.linkedin_profile = sociallogin.account.get_profile_url()
+            profile.short_bio = sociallogin.account.extra_data["headline"],
             profile.save()
 
     # in this signal I can retrieve the obj from SocialAccount
