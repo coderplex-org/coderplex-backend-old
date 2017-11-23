@@ -55,37 +55,52 @@ Basic Authentication
     > social can be replaced by `github` or `linkedin`
     >    - code
 
-    > returns {
-        "token": "",
-        "user": {
-            "pk": ,
-            "username": "",
-            "first_name": "",
-            "last_name": "",
-            "avatar": ""
-        }
-     }
+    > returns
+     
+     ```json
+        {
+            "token": "",
+            "user": {
+                "pk": ,
+                "username": "",
+                "first_name": "",
+                "last_name": "",
+                "avatar": ""
+            }
+         }
+    ```   
 
 Other APIs
 -----------
 
 - `/book/<slug>` (GET)
-    > returns {
-                "id": ,
-                "title": "",
-                "slug": "",
-                "image": "",
-                "description": "",
-                "chapters": [],
-                "updated_by": {
-                        "first_name": "",
-                        "last_name": ""
-                 },
-                "created_by": {
+    > returns
+    - `/v1/auth/<social>` (POST)
+    > social can be replaced by `github` or `linkedin`
+    >    - code
+
+    > returns
+     
+     ```json
+        {
+            "id": "",
+            "title": "",
+            "slug": "",
+            "image": "",
+            "description": "",
+            "chapters": [],
+            "updated_by": {
                     "first_name": "",
                     "last_name": ""
-                 }
-               }
+             },
+            "created_by": {
+                "first_name": "",
+                "last_name": ""
+             }
+         }
+    ```   
+ 
+    
 
 - `/books` (GET)
     > returns list of books
