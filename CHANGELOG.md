@@ -34,10 +34,42 @@ All notable changes to this project will be documented in this file.
     
     - **Example Request**:
     
-        **GET `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81ps4wm9kflx&redirect_uri=http://127.0.0.1:8000/callback&scope=r_basicprofile`**
+        **GET `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81ps4wm9kflx&redirect_uri=http://127.0.0.1:8000/callback`**
 
+- `/api-token-auth` (POST)
+    >  - username
+    >  - password
+    
+    > returns 
+    ```json
+        {
+          "token" : ""
+        }
+    ``` 
+    
+    - **Example Request**:
+    
+        **POST `http://127.0.0.1:8000/api-token-auth`**
+        
+        **data** in `application/json` form
+        ```json
+          {
+             "username" : "admin",
+             "password" : "admin_password"
+          }
+
+        ```
+        
 - `/v1/auth/<social>` (POST)
     > social can be replaced by `github` or `linkedin`
+    
+    **Headers**:
+   
+    >  Content-Type : application/json
+  
+    >  Authorization : JWT <token>
+    
+    **data** in `application/json` form
     >    - code
 
     > returns

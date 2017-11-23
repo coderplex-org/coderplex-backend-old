@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^$', views.HelloWordView.as_view()),
     url(r'^v1/', include('authentication.urls')),
     url(r'^callback', views.SocialCodeView.as_view()),
-    url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^api-token-refresh/', refresh_jwt_token),
-    url(r'^api-token-verify/', verify_jwt_token),
+    url(r'^api-token-auth', obtain_jwt_token),
+    url(r'^api-token-refresh', refresh_jwt_token),
+    url(r'^api-token-verify', verify_jwt_token),
 ]

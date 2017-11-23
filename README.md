@@ -51,8 +51,27 @@ Basic Authentication
 
     > `response_type` should take `code` as its value
 
+- `/api-token-auth` (POST)
+    >  - username
+    >  - password
+    
+    > returns 
+    ```json
+        {
+          "token" : ""
+        }
+    ``` 
+
 - `/v1/auth/<social>` (POST)
     > social can be replaced by `github` or `linkedin`
+    
+    **Headers**:
+   
+    >  Content-Type : application/json
+  
+    >  Authorization : JWT <token>
+    
+    **data** in `application/json` form
     >    - code
 
     > returns
