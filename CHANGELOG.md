@@ -1,110 +1,19 @@
 # Changelog
-All notable changes to this project will be documented in this file.
+All notable changes to this project for every pull request will be documented in this file.
 
 ## [Pull Request [#12](https://github.com/coderplex/coderplex-backend/pull/12)]
 ### Added
 - **Github Login** and **Linkedin Login** based on [django-allauth](https://django-allauth.readthedocs.io/en/latest/)
+- **JWT Token** Authentication setup
+- Started maintaining [API Endpoints](API.md) in a separate file
 
 ### Changed
-- Changed **README.md** to add new API endpoints
+- **README.md** to add a link to API endpoints
 
 ### API EndPoints
 
 #### Added
 
-- `https://github.com/login/oauth/authorize`(GET)
-    >    - scope  (optional)
-    >    - client_id
-
-    > returns `code`
-    
-    - **Example Request**:
-    
-      **GET `https://github.com/login/oauth/authorize?scope=user:email&client_id=97d600c69373091ac0`**          
-      
-- `https://www.linkedin.com/oauth/v2/authorization`(GET)
-    >    - scope   (optional)
-    >    - client_id
-    >    - response_type
-    >    - redirect_uri
-
-    > returns `code`
-
-    > `response_type` should take `code` as its value
-    
-    - **Example Request**:
-    
-        **GET `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=81ps4wm9kflx&redirect_uri=http://127.0.0.1:8000/callback`**
-
-- `/api-token-auth` (POST)
-    >  - username
-    >  - password
-    
-    > returns 
-    ```json
-        {
-          "token" : ""
-        }
-    ``` 
-    
-    - **Example Request**:
-    
-        **POST `http://127.0.0.1:8000/api-token-auth`**
-        
-        **data** in `application/json` form
-        ```json
-          {
-             "username" : "admin",
-             "password" : "admin_password"
-          }
-
-        ```
-        
-- `/v1/auth/<social>` (POST)
-    > social can be replaced by `github` or `linkedin`
-    
-    **Headers**:
-   
-    >  Content-Type : application/json
-  
-    >  Authorization : JWT <token>
-    
-    **data** in `application/json` form
-    >    - code
-
-    > returns
-     
-     ```json
-         {
-            "token": "",
-            "user": {
-                "pk": ,
-                "username": "",
-                "first_name": "",
-                "last_name": "",
-                "avatar": ""
-            }
-         }
-    ```   
-    
-    - **Example Requests**:
-    
-        - **POST `http://127.0.0.1:8000/v1/auth/github`**
-        
-            **data** in `application/json` form
-            ```json
-              {
-                 "code" : "f9f2d53daa483c8821a"
-              }
-    
-            ```
-            
-        - **POST `http://127.0.0.1:8000/v1/auth/linkedin`**
-        
-            **data** in `application/json` form
-            ```json
-              {
-                 "code" : "AQSRSzH9xn-SgYKCRjixNz6vWjdj6_Np6ef7LFPKA4L6hHzT9C-GTtiwM8uTR1eYqD1OorjgdtrpRMLgkasogSG53etnZ8H4xA9g-_LX9aZ4iGfP7QZE5sLBmog8QWZeWRrtF0l2GtnFZa0KzrTI03iv2hhNig"
-              }
-    
-            ```
+- JWT Token
+- GitHub Login
+- LinkedIn Login
