@@ -22,10 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'it0duspa6^cxb*&om!3t$jo!4*17nvr61w7z_^1rz**0(um+1!'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+BUILD_ENV = os.environ.get('BUILD_ENV', 'local')
+
+if BUILD_ENV == 'production':
+    from .config.production import *
+else:
+    from .config.localhost import *
 
 
 # Application definition
@@ -51,6 +54,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.linkedin_oauth2',
 
+    'corsheaders',
+
     'member',
     'books'
 ]
@@ -58,6 +63,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
