@@ -94,10 +94,7 @@
   
   **Required:**
     
-   `content-type: application/json`
-   
-   `authorization: JWT <token>`
-    
+   `content-type: application/json`   
 
 * **Success Response:**
   
@@ -119,12 +116,6 @@
  
 * **Error Response:**
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{"detail": "Authentication credentials were not provided."}` <br />
-    **Problem:** `JWT Token is missing in header`
-     
-  OR
-
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `{"non_field_errors": ["Incorrect input. access_token or code is required."]}` <br />
     **Problem:** `code is blank or code is not passed as data`
@@ -135,7 +126,6 @@
   ```
     curl -X POST \
       http://localhost:8000/v1/auth/github \
-      -H 'authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyX2lkIjoxLCJleHAiOjE1MTE0NzE5NzB9.CQYJPQajj4wIBFlteUmzMMYvvT-lEvILCcS5CmAWwa4' \      
       -H 'content-type: application/json' \      
       -d '{
         "code" : "e47deee658cb2c59a6"
@@ -144,7 +134,7 @@
 
 * **Notes:**
 
-  - You may get **500 INTERNAL SERVER ERROR**, check the error content to find out the problem in that case.  
+  - You may get **500 INTERNAL SERVER ERROR** sometimes, in that case check the error content to find out the problem.  
   
 **LINKEDIN LOGIN**
 ----
@@ -169,9 +159,6 @@
   **Required:**
     
    `content-type: application/json`
-   
-   `authorization: JWT <token>`
-    
 
 * **Success Response:**
   
@@ -193,12 +180,6 @@
  
 * **Error Response:**
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{"detail": "Authentication credentials were not provided."}` <br />
-    **Problem:** `JWT Token is missing in header`
-     
-  OR
-
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `{"non_field_errors": ["Incorrect input. access_token or code is required."]}` <br />
     **Problem:** `code is blank or code is not passed in data`
@@ -208,8 +189,7 @@
 
   ```
     curl -X POST \
-      http://localhost:8000/v1/auth/linkedin \
-      -H 'authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyX2lkIjoxLCJleHAiOjE1MTE0NzE5NzB9.CQYJPQajj4wIBFlteUmzMMYvvT-lEvILCcS5CmAWwa4' \      
+      http://localhost:8000/v1/auth/linkedin \    
       -H 'content-type: application/json' \      
       -d '{
         "code" : "e47deee658cb2c59a6"
@@ -218,7 +198,7 @@
 
 * **Notes:**
 
-  - You may get **500 INTERNAL SERVER ERROR**, check the error content to find out the problem in that case.
+  - You may get **500 INTERNAL SERVER ERROR** sometimes, in that case check the error content to find out the problem.
   
 
 **GITHUB CODE**
