@@ -64,7 +64,7 @@
       -H 'content-type: application/json' \
       -d '{
         "username": "admin",
-        "password" : "admin@admin"
+        "password" : "admin_password"
     }'
   ``` 
 
@@ -106,12 +106,12 @@
     ```json
         {
             "token": "eyJ0eXAiOiJKV1QiLCJhbGc",
-            "user": {
-                "pk": 67,
+            "user": {                
                 "username": "user123",
                 "first_name": "P",
                 "last_name": "User Name",
-                "avatar": "http://www.sample.com/image.jpg"
+                "avatar": "http://www.sample.com/image.jpg",
+                "email" : "email@example.com"
             }
         }
      ```
@@ -180,12 +180,12 @@
     ```json
         {
             "token": "eyJ0eXAiOiJKV1QiLCJhbGc",
-            "user": {
-                "pk": 67,
+            "user": {                
                 "username": "user123",
                 "first_name": "P",
                 "last_name": "User Name",
-                "avatar": "http://www.sample.com/image.jpg"
+                "avatar": "http://www.sample.com/image.jpg",
+                "email" : "email@example.com"
             }
         }
      ```
@@ -308,3 +308,111 @@
 * **Notes:**
   - The value of the `response_type` field should always be:  `code`
   - Check [this](https://developer.linkedin.com/docs/oauth2) for further info
+  
+  
+**USER View**
+----
+  Fetch the details of logged_in user
+
+* **URL**
+
+  **`/user`**
+
+* **Method:**
+  
+  **`GET`**
+
+* **Headers**
+  
+  **Required:**   
+   
+   `authorization: JWT <token>`
+
+* **Success Response:**
+  
+  * **Code:** 200 OK <br />
+    **Content:** 
+    ```json
+        {                  
+          "username": "user123",
+          "first_name": "P",
+          "last_name": "User Name",
+          "avatar": "http://www.sample.com/image.jpg",
+          "email" : "email@example.com"
+        }
+    ```
+                               
+
+* **Sample Call:**
+
+  ```
+    curl -X GET \
+      http://localhost:8000/user \
+      -H 'authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6Ik' \          
+  ``` 
+
+* **Notes:**
+  - None
+  
+**USER Update**
+----
+  Update the details of logged_in user
+
+* **URL**
+
+  **`/user`**
+
+* **Method:**
+  
+  **`POST`**
+
+* **URL Params**  
+   
+  **Optional:**
+  
+   `username=[string]`
+   
+   `email=[email]`
+   
+   `first_name=[string]`
+   
+   `last_name=[string]`
+   
+
+* **Headers**
+  
+  **Required:**   
+   
+   `authorization: JWT <token>`
+
+* **Success Response:**
+  
+  * **Code:** 200 OK <br />
+    **Content:** 
+    ```json
+        {                  
+          "username": "user123",
+          "first_name": "P",
+          "last_name": "User Name",         
+          "email" : "email@example.com"
+        }
+    ```
+                               
+
+* **Sample Call:**
+
+  ```
+    curl -X POST \
+      http://localhost:8000/user \
+      -H 'authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MTE0ODMzOTQsImVtYWlsIjoiIiwidXNlcm5hbWUiOiJiaGFudV90ZWphIiwidXNlcl9pZCI6NzR9.Hc1H8Tt9d2FSJkTEHKjx-fB8cblrg1yKDVK9lzuZ914' \      
+      -H 'content-type: application/json' \      
+      -d '{
+        "username" : "user123",
+        "first_name" : "First",
+        "last_name" : "last",
+        "email" : "email@example.com"
+    }'          
+  ``` 
+
+* **Notes:**
+  - None

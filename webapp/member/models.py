@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from allauth.account.signals import user_signed_up
 from django.dispatch import receiver
+from django.contrib.auth import login
 
 class UserProfile(models.Model):
     """
@@ -48,4 +49,5 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
             profile.short_bio = sociallogin.account.extra_data["headline"],
             profile.save()
 
+        # login(request, user)
     # in this signal I can retrieve the obj from SocialAccount
