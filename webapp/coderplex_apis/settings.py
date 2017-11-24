@@ -194,6 +194,7 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER' : "member.serializers.UserDetailSerializer"
 }
 
+AUTH_PROFILE_MODULE = 'member.UserProfile'
 
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
