@@ -1,9 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+from allauth.account.signals import user_signed_up
+from django.dispatch import receiver
+from django.contrib.auth import login
 
-
-# Create your models here.
 class UserProfile(models.Model):
     """
     This model is an extension of the User model that is inbuilt in django.
@@ -25,17 +25,29 @@ class UserProfile(models.Model):
     familiar_technologies = models.CharField(max_length=255, blank=True, null=True, default=None)
     interested_technologies = models.CharField(max_length=255, blank=True, null=True, default=None)
 
+@receiver(user_signed_up)
+def retrieve_social_data(request, user, sociallogin=None, **kwargs):
+    """Signal, that gets extra data from sociallogin and put it to profile."""
 
-def create_user_profile(sender, instance, created, **kwargs):
-    """
-    This is a post save signal of django user inbuilt model triggers this method.
-    :param sender: The model which is responsible for the signal
-    :param instance: The instance that was just saved
-    :param created: The variable to check if the instance was created
-    :param kwargs: other Key value arguments
-    """
-    if created:
-        UserProfile.objects.create(user=instance)
+    if sociallogin:
+        print("provider",sociallogin.account.provider)
+        print("extra_data", sociallogin.account.extra_data)
 
+        avatar_url = sociallogin.account.get_avatar_url()
+        UserProfile.objects.create(user=user, avatar=avatar_url)
 
-post_save.connect(create_user_profile, sender=User)
+        if sociallogin.account.provider == 'github':
+            profile = UserProfile.objects.filter(user=user)[0]
+            profile.github_profile = sociallogin.account.get_profile_url()
+            profile.short_bio = sociallogin.account.extra_data["bio"]
+            profile.job_status = sociallogin.account.extra_data["hireable"]
+            profile.company_name = sociallogin.account.extra_data["company"]
+            profile.save()
+        elif sociallogin.account.provider == 'linkedin_oauth2':
+            profile = UserProfile.objects.filter(user=user)[0]
+            profile.linkedin_profile = sociallogin.account.get_profile_url()
+            profile.short_bio = sociallogin.account.extra_data["headline"],
+            profile.save()
+
+        # login(request, user)
+    # in this signal I can retrieve the obj from SocialAccount

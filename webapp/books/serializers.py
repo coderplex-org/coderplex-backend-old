@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from member.serializers import UserSerializerShort
+from member.serializers import UserShortSerializer
 from .models import Book, Chapter, Page
 
 
 class BookSerializer(serializers.ModelSerializer):
-    created_by = UserSerializerShort()
-    updated_by = UserSerializerShort()
+    created_by = UserShortSerializer()
+    updated_by = UserShortSerializer()
     
     class Meta:
         model = Book
@@ -14,8 +14,8 @@ class BookSerializer(serializers.ModelSerializer):
         
 
 class ChapterSerializer(serializers.ModelSerializer):
-    created_by = UserSerializerShort()
-    updated_by = UserSerializerShort()
+    created_by = UserShortSerializer()
+    updated_by = UserShortSerializer()
     
     class Meta:
         model = Chapter
@@ -24,8 +24,8 @@ class ChapterSerializer(serializers.ModelSerializer):
 
 
 class PageSerializer(serializers.ModelSerializer):
-    created_by = UserSerializerShort()
-    updated_by = UserSerializerShort()
+    created_by = UserShortSerializer()
+    updated_by = UserShortSerializer()
     
     class Meta:
         model = Page
@@ -34,8 +34,8 @@ class PageSerializer(serializers.ModelSerializer):
 
 
 class PageDetailSerializer(serializers.ModelSerializer):
-    created_by = UserSerializerShort()
-    updated_by = UserSerializerShort()
+    created_by = UserShortSerializer()
+    updated_by = UserShortSerializer()
     
     class Meta:
         model = Page
@@ -51,8 +51,8 @@ class PageShortSerializer(serializers.ModelSerializer):
 
 class ChapterDetailSerializer(serializers.ModelSerializer):
     pages = serializers.SerializerMethodField()
-    created_by = UserSerializerShort()
-    updated_by = UserSerializerShort()
+    created_by = UserShortSerializer()
+    updated_by = UserShortSerializer()
     
     def get_pages(self, obj):
         pages = Page.objects.filter(chapter=obj).order_by('position')
@@ -72,8 +72,8 @@ class ChapterShortSerializer(serializers.ModelSerializer):
         
 class BookDetailSerializer(serializers.ModelSerializer):
     chapters = serializers.SerializerMethodField()
-    created_by = UserSerializerShort()
-    updated_by = UserSerializerShort()
+    created_by = UserShortSerializer()
+    updated_by = UserShortSerializer()
     
     def get_chapters(self, obj):
         chapters = Chapter.objects.filter(book=obj).order_by('position')

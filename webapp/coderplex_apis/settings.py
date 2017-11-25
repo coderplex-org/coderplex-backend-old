@@ -22,10 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'it0duspa6^cxb*&om!3t$jo!4*17nvr61w7z_^1rz**0(um+1!'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
+BUILD_ENV = os.environ.get('BUILD_ENV', 'local')
+
+if BUILD_ENV == 'production':
+    from .config.production import *
+else:
+    from .config.localhost import *
 
 
 # Application definition
@@ -37,8 +40,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.linkedin_oauth2',
+
+    'corsheaders',
+
     'member',
     'books'
 ]
@@ -46,6 +63,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,21 +90,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'coderplex_apis.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -140,4 +143,58 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
     ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
+
+SITE_ID = 1
+REST_USE_JWT = True
+# REST_SESSION_LOGIN = False
+
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'optional'
+SOCIALACCOUNT_EMAIL_REQUIRED = False
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+SOCIALACCOUNT_PROVIDERS = \
+    {
+     'linkedin_oauth2': {
+            'SCOPE': ['r_emailaddress', 'r_basicprofile'],
+            'PROFILE_FIELDS': [
+                                'id',
+                                'first-name',
+                                'last-name',
+                                'formatted-name',
+                                'email-address',
+                                'headline',
+                                'industry',
+                                'location',
+                                'num-connections',
+                                'num-connections-capped',
+                                'picture-url',
+                                'public-profile-url',
+                                'positions',
+                                'summary'
+                              ]
+            }
+    }
+
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER' : "member.serializers.UserDetailSerializer"
+}
+
+AUTH_PROFILE_MODULE = 'member.UserProfile'
+
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
