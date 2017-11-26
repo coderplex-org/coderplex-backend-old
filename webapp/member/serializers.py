@@ -21,14 +21,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ('user', 'avatar', 'mobile_number', 'short_bio', 'job_status', 'company_name', 'looking_for_job', 'github_profile', 'facebook_profile', 'twitter_profile', 'linkedin_profile', 'codepen_profile', 'discord_profile', 'familiar_technologies', 'interested_technologies')
 
-class UserEditSerializer(serializers.Serializer):
-    email = serializers.EmailField(required=False)
-    first_name = serializers.CharField(required=False)
-    last_name = serializers.CharField(required=False)
-    username = serializers.CharField(required=False)
+class UserEditSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
 
     def update(self, instance, validated_data):
-
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.email = validated_data.get('email', instance.email)
         instance.last_name = validated_data.get('last_name', instance.last_name)
@@ -36,7 +35,12 @@ class UserEditSerializer(serializers.Serializer):
         instance.save()
         return instance
 
-class UserProfileEditSerializer(serializers.Serializer):
+class UserProfileEditSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('avatar','mobile_number','short_bio','job_status','company_name','looking_for_job','github_profile','facebook_profile','twitter_profile','linkedin_profile','codepen_profile','discord_profile','familiar_technologies','interested_technologies')
+
     avatar = serializers.URLField(required=False)
     mobile_number = serializers.CharField(required=False)
     short_bio = serializers.CharField(required=False)
@@ -52,7 +56,7 @@ class UserProfileEditSerializer(serializers.Serializer):
     familiar_technologies = serializers.CharField(required=False)
     interested_technologies = serializers.CharField(required=False)
 
-    def update(self, instance, validated_data, user):
+    def update(self, instance, validated_data):
         instance.avatar = validated_data.get('avatar', instance.avatar)
         instance.mobile_number = validated_data.get('mobile_number', instance.mobile_number)
         instance.short_bio = validated_data.get('short_bio', instance.short_bio)
@@ -67,6 +71,5 @@ class UserProfileEditSerializer(serializers.Serializer):
         instance.discord_profile = validated_data.get('discord_profile', instance.discord_profile)
         instance.familiar_technologies = validated_data.get('familiar_technologies', instance.familiar_technologies)
         instance.interested_technologies = validated_data.get('interested_technologies', instance.interested_technologies)
-        instance.user = user
         instance.save()
         return instance

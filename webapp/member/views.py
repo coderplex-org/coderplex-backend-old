@@ -28,12 +28,11 @@ class UserProfileView(mixins.RetrieveModelMixin,
         return Response(serializer.data)
 
     def post(self, request, *args, **kwargs):
-        serializer = UserProfileEditSerializer(UserProfile.objects.get(user=request.user), data=request.data, user=request.user)
+        serializer = UserProfileEditSerializer(UserProfile.objects.get(user=request.user), data=request.data)
 
         if serializer.is_valid():
             serializer.save()
-            profile_serializer = UserProfileSerializer(UserProfile.objects.get(user=request.user))
-            return Response(profile_serializer.data)
+            return Response(serializer.data)
 
         else:
             return Response(serializer.errors)

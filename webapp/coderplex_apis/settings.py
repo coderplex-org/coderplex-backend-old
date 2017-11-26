@@ -91,17 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'coderplex_apis.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -209,6 +198,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
-LINKEDIN_CALLBACK_URL = os.environ.get('LINKEDIN_CALLBACK_URL')
-GITHUB_CALLBACK_URL = os.environ.get('GITHUB_CALLBACK_URL')
