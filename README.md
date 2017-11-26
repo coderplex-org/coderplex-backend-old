@@ -53,4 +53,4 @@ Check [this](API.md) for API Endpoints
 ## Instructions for setting things up for `production` environment
 
 - Follow all Instructions that are stated above
-- Additionally, Set **LINKEDIN_CALLBACK_URL** and **GITHUB_CALLBACK_URL** as **base_url + "/callback"**
+- Additionally, Set environment variables **LINKEDIN_CALLBACK_URL** and **GITHUB_CALLBACK_URL** as **base_url + "/callback"**
