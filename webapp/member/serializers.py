@@ -38,23 +38,8 @@ class UserEditSerializer(serializers.ModelSerializer):
 class UserProfileEditSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = User
+        model = UserProfile
         fields = ('avatar','mobile_number','short_bio','job_status','company_name','looking_for_job','github_profile','facebook_profile','twitter_profile','linkedin_profile','codepen_profile','discord_profile','familiar_technologies','interested_technologies')
-
-    avatar = serializers.URLField(required=False)
-    mobile_number = serializers.CharField(required=False)
-    short_bio = serializers.CharField(required=False)
-    job_status = serializers.NullBooleanField(required=False)
-    company_name = serializers.CharField(required=False)
-    looking_for_job = serializers.NullBooleanField(required=False)
-    github_profile = serializers.URLField(required=False)
-    facebook_profile = serializers.URLField(required=False)
-    twitter_profile = serializers.URLField(required=False)
-    linkedin_profile = serializers.URLField(required=False)
-    codepen_profile = serializers.URLField(required=False)
-    discord_profile = serializers.CharField(required=False)
-    familiar_technologies = serializers.CharField(required=False)
-    interested_technologies = serializers.CharField(required=False)
 
     def update(self, instance, validated_data):
         instance.avatar = validated_data.get('avatar', instance.avatar)
