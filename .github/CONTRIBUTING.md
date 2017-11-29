@@ -46,7 +46,7 @@ We welcome pull requests from beginners and django developers alike!
 
 ### Work on Issues
 
-1. Find an issue that needs assistance by searching for the [open issues](https://github.com/coderplex/coderplex-backend/labels/help wanted).
+1. Find an issue that needs assistance by searching for the [open issues](https://github.com/coderplex/coderplex-backend/labels/help-wanted).
 1. If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don’t accidentally duplicate your effort.
 1. If somebody claims an issue but doesn’t follow up for more than a weeks, it’s fine to take over it but you should still leave a comment.
 
