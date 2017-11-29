@@ -165,6 +165,9 @@ We welcome pull requests from beginners and django developers alike!
    ```bash
     python webapp/manage.py test
    ```
+1. If any documentation is needed, add docs
+1. If any exisitng APIs are modified, make those changes in [API.md](../API.md)
+1. If any new APIs are added, make those changes in [API.md](../API.md) according to [iros's template](https://gist.github.com/iros/3426278)    
 1. Add and commit your code. Please give meaningful commit messages.
 
 #### Submitting PullRequest

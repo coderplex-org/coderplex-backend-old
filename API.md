@@ -1,80 +1,32 @@
-**JWT Token**
+**GitHub Code**
 ----
-  Fetch JWT Token using user credentials
+  To Fetch GitHub `code` from GitHub api for oauth authorization, run the following url in browser
 
 * **URL**
 
-  **`/api-token-auth`**
-
-* **Method:**
-  
-  **`POST`**
-
-* **Data Params**
-  
-  **Required:**
- 
-   `username=[string]`
-   
-   `password=[string]`
-    
+  **`https://github.com/login/oauth/authorize?scope=user:email&client_id=97d600c693730ed91ac0`**
 
 * **Success Response:**
   
   * **Code:** 200 OK <br />
-    **Content:** `
-                {
-                    "token": "eyJ0eXAiOiJKV1QiLCJhbGciO"
-                }`
-        
- 
-* **Error Response:**
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{
-                    "non_field_errors": [
-                        "Unable to log in with provided credentials."
-                    ]
-                  }`
-
-  OR
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{
-                   "password": [
-                        "This field may not be blank."
-                    ]
-                  }`
+    **Content:** `code` will be appended as param to your `callback_url` or `redirect_uri`                          
   
-  OR
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:** `{                    
-                    "password": [
-                        "This field is required."
-                    ]
-                  }`
-                  
-
-* **Sample Call:**
-
-  ```
-    curl -X POST \
-      http://localhost:8000/api-token-auth \      
-      -H 'content-type: application/json' \
-      -d '{
-        "username": "admin",
-        "password" : "admin_password"
-    }'
-  ``` 
-
-* **Notes:**
-
-  - None
-  
-**GITHUB LOGIN**
+**LinkedIn Code**
 ----
-  Login to the application using **GITHUB**
+  Fetch code from **LINKEDIN** api for oauth authorization
+
+* **URL**
+
+  **`https://www.linkedin.com/oauth/v2/authorization?client_id=81ptws4wm9kflx&response_type=code&redirect_uri=http://127.0.0.1:8000/callback`**  
+
+* **Success Response:**
+  
+  * **Code:** 200 OK <br />
+    **Content:** `code` will be appended as param to your `callback_url` or `redirect_uri`                          
+
+**GitHub Login**
+----
+  Login to the application using **GitHub**
 
 * **URL**
 
@@ -136,9 +88,9 @@
 
   - You may get **500 INTERNAL SERVER ERROR** sometimes, in that case check the error content to find out the problem.  
   
-**LINKEDIN LOGIN**
+**LinkedIn Login**
 ----
-  Login to the application using **LINKEDIN**
+  Login to the application using **LinkedIn**
 
 * **URL**
 
@@ -200,97 +152,86 @@
 
   - You may get **500 INTERNAL SERVER ERROR** sometimes, in that case check the error content to find out the problem.
   
-
-**GITHUB CODE**
+**JWT Token**
 ----
-  Fetch code from **GITHUB** api for oauth authorization
+  Fetch JWT Token using user credentials
 
 * **URL**
 
-  **`https://github.com/login/oauth/authorize`**
+  **`/api-token-auth`**
 
 * **Method:**
   
-  **`GET`**
+  **`POST`**
 
-* **URL Params**
+* **Data Params**
+  
+  **Required:**
+ 
+   `username=[string]`
+   
+   `password=[string]`
+
+* **Headers**
   
   **Required:**
     
-   `client_id=[string]`
-   
-  **Optional:**
-  
-    `scope=[string]`
-    
-    `redirect_uri=[string]`
-    
-    `state=[string]`
-    
-    `allow_signup=[string]`  
+   `content-type: application/json`    
 
 * **Success Response:**
   
   * **Code:** 200 OK <br />
-    **Content:** `code` will be appended as param to your `callback_url` or `redirect_uri`                          
+    **Content:** `
+                {
+                    "token": "eyJ0eXAiOiJKV1QiLCJhbGciO"
+                }`
+        
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{
+                    "non_field_errors": [
+                        "Unable to log in with provided credentials."
+                    ]
+                  }`
+
+  OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{
+                   "password": [
+                        "This field may not be blank."
+                    ]
+                  }`
+  
+  OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{                    
+                    "password": [
+                        "This field is required."
+                    ]
+                  }`
+                  
 
 * **Sample Call:**
 
   ```
-    curl -X GET \
-    'https://github.com/login/oauth/authorize?scope=user:email&client_id=97d600c693730ed0'    
+    curl -X POST \
+      http://localhost:8000/api-token-auth \      
+      -H 'content-type: application/json' \
+      -d '{
+        "username": "admin",
+        "password" : "admin_password"
+    }'
   ``` 
 
 * **Notes:**
 
-  - Check [this](https://developer.github.com/apps/building-integrations/setting-up-and-registering-oauth-apps/about-authorization-options-for-oauth-apps/) for further info
+  - None  
   
-**LINKEDIN CODE**
-----
-  Fetch code from **LINKEDIN** api for oauth authorization
-
-* **URL**
-
-  **`https://www.linkedin.com/oauth/v2/authorization`**
-
-* **Method:**
-  
-  **`GET`**
-
-* **URL Params**
-  
-  **Required:**
-    
-   `response_type=[string]`
-   
-   `client_id=[string]`
-   
-   `redirect_uri=[string]`
-   
-   `state=[string]`
-   
-  **Optional:**
-  
-   `scope=[string]`         
-
-* **Success Response:**
-  
-  * **Code:** 200 OK <br />
-    **Content:** `code` will be appended as param to your `callback_url` or `redirect_uri`                          
-
-* **Sample Call:**
-
-  ```
-    curl -X GET \
-    'https://github.com/login/oauth/authorize?scope=user:email&client_id=97d600c693730ed0'    
-  ``` 
-
-* **Notes:**
-  - The value of the `response_type` field should always be:  `code`
-  - Check [this](https://developer.linkedin.com/docs/oauth2) for further info
-  
-  
-**USER View**
+**User View**
 ----
   Fetch the details of logged_in user
 
@@ -306,7 +247,7 @@
   
   **Required:**   
    
-   `authorization: JWT <token>`
+   `authorization: JWT <token>`   
 
 * **Success Response:**
   
@@ -333,7 +274,7 @@
 * **Notes:**
   - None
   
-**USER Update**
+**User Update**
 ----
   Update the details of logged_in user
 
@@ -363,6 +304,8 @@
   **Required:**   
    
    `authorization: JWT <token>`
+   
+   `content-type: application/json`
 
 * **Success Response:**
   
@@ -396,7 +339,7 @@
 * **Notes:**
   - None
   
-**USER Profile View**
+**User Profile View**
 ----
   Fetch the profile of logged_in user
   
@@ -455,7 +398,7 @@
 * **Notes:**
   - None
   
-**USER Profile Update**
+**User Profile Update**
 ----
   Update the profile of logged_in user
 
@@ -505,6 +448,8 @@
   **Required:**   
    
    `authorization: JWT <token>`
+   
+   `content-type: application/json`
 
 * **Success Response:**
   
