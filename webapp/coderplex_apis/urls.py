@@ -19,11 +19,14 @@ from . import views
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework_jwt.views import refresh_jwt_token
 from rest_framework_jwt.views import verify_jwt_token
+from rest_framework_swagger.views import get_swagger_view
+schema_view = get_swagger_view(title='CoderPlex APIs')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('books.urls')),
     url(r'^$', views.HelloWordView.as_view()),
+    url(r'^api-docs$', schema_view),
     url(r'^v1/', include('authentication.urls')),
     url(r'^callback', views.SocialCodeView.as_view()),
     url(r'^api-token-auth', obtain_jwt_token),

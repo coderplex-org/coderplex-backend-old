@@ -17,6 +17,7 @@ Coderplex web application comprises of two repositories :
   - [Prerequisites](#prerequisites)
   - [Sending a Pull Request](#sending-a-pull-request)
     - [Running Locally](#running-locally)
+        - [Notes](#notes)
     - [Docker Deployment in production](#docker-deployment-in-production)
     - [Before submitting](#before-submitting)
     - [Submitting PullRequest](#submitting-pullrequest)
@@ -46,7 +47,7 @@ We welcome pull requests from beginners and django developers alike!
 
 ### Work on Issues
 
-1. Find an issue that needs assistance by searching for the [open issues](https://github.com/coderplex/coderplex-backend/labels/help wanted).
+1. Find an issue that needs assistance by searching for the [open issues](https://github.com/coderplex/coderplex-backend/labels/help-wanted).
 1. If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don’t accidentally duplicate your effort.
 1. If somebody claims an issue but doesn’t follow up for more than a weeks, it’s fine to take over it but you should still leave a comment.
 
@@ -130,8 +131,14 @@ We welcome pull requests from beginners and django developers alike!
     python webapp/manage.py runserver
    ```   
    You can now open the App at `localhost:8000` in your browser
-1. You can see all the implemented APIs in [API.md](../API.md)
-    
+   
+##### Notes   
+1. You can see all the implemented APIs in the route `/api-docs`. Any new api that you will create will be automatically appear in `/api-docs` route.
+1. To get `code` that will be used to in the `GitHub Login API`, run this [url](https://github.com/login/oauth/authorize?scope=user:email&client_id=97d600c693730ed91ac0)
+   in the browser and authorize, then the `code` will be appended as a url param to the redirected_url 
+1. To get `code` that will be used to in the `LinkedIn Login API`, run this [url](https://www.linkedin.com/oauth/v2/authorization?client_id=81ptws4wm9kflx&response_type=code&redirect_uri=http://127.0.0.1:8000/callback)
+   in the browser and authorize, then the `code` will be appended as a url param to the redirected_url
+       
 #### For Production (Contributors can ignore this)
 1. Change `client_id` and `client_secret` of social applications
 1. Add environment variables `GITHUB_CALLBACK_URL` and `LINKEDIN_CALLBACK_URL` and set those with `<base_url> + "/callback"`
@@ -165,9 +172,7 @@ We welcome pull requests from beginners and django developers alike!
    ```bash
     python webapp/manage.py test
    ```
-1. If any documentation is needed, add docs
-1. If any exisitng APIs are modified, make those changes in [API.md](../API.md)
-1. If any new APIs are added, make those changes in [API.md](../API.md) according to [iros's template](https://gist.github.com/iros/3426278)    
+1. If any documentation is needed, add docs    
 1. Add and commit your code. Please give meaningful commit messages.
 
 #### Submitting PullRequest
