@@ -15,4 +15,4 @@ This project mainly uses
 
 ## Contributing
 
-We welcome pull requests from beginners and django developers alike!. You can work on open issues, fix bugs and more. Be sure to read our [contributing guide](https://github.com/coderplex/coderplex-backend/blob/develop/.github/CONTRIBUTING.md) for hassel free contribution.
+We welcome pull requests from beginners and django developers alike!. You can work on open issues, fix bugs and more. Be sure to read our [contributing guide](.github/CONTRIBUTING.md) for hassel free contribution.
