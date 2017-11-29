@@ -1,0 +1,32 @@
+[
+  {
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+      "name": "localhost:8000",
+      "domain": "localhost:8000"
+    }
+  },
+  {
+    "model": "socialaccount.socialapp",
+    "pk": 1,
+    "fields": {
+      "provider": "github",
+      "name": "CoderPlex GitHub",
+      "client_id": "97d600c693730ed91ac0",
+      "secret": "901182df0d0b14b54750beb86d62626bae960b6f",
+      "sites": [1]
+    }
+  },
+  {
+    "model": "socialaccount.socialapp",
+    "pk": 2,
+    "fields": {
+      "provider": "linkedin_oauth2",
+      "name": "CoderPlex LinkedIn",
+      "client_id": "81ptws4wm9kflx",
+      "secret": "8KiqKQs71iPzBQV4",
+      "sites": [1]
+    }
+  }
+]
