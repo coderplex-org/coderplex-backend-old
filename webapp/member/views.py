@@ -8,6 +8,9 @@ from rest_framework import mixins, generics
 class UserDetailView(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
 
+    model = User
+    serializer_class = UserDetailSerializer
+
     def get(self, request, *args, **kwargs):
         serializer = UserDetailSerializer(request.user)
         return Response(serializer.data)
@@ -22,6 +25,9 @@ class UserDetailView(mixins.RetrieveModelMixin,
 
 class UserProfileView(mixins.RetrieveModelMixin,
                      generics.GenericAPIView):
+
+    model = UserProfile
+    serializer_class = UserProfileSerializer
 
     def get(self, request, *args, **kwargs):
         serializer = UserProfileSerializer(UserProfile.objects.get(user=request.user))

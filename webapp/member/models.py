@@ -34,17 +34,19 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
         print("extra_data", sociallogin.account.extra_data)
 
         avatar_url = sociallogin.account.get_avatar_url()
-        UserProfile.objects.create(user=user, avatar=avatar_url)
+        profile, created = UserProfile.objects.get_or_create(user=user)
 
         if sociallogin.account.provider == 'github':
-            profile = UserProfile.objects.filter(user=user)[0]
+            present_user = User.objects.filter(email=user.email)[0]
+            profile = UserProfile.objects.filter(user=present_user)[0]
             profile.github_profile = sociallogin.account.get_profile_url()
             profile.short_bio = sociallogin.account.extra_data["bio"]
             profile.job_status = sociallogin.account.extra_data["hireable"]
             profile.company_name = sociallogin.account.extra_data["company"]
             profile.save()
         elif sociallogin.account.provider == 'linkedin_oauth2':
-            profile = UserProfile.objects.filter(user=user)[0]
+            present_user = User.objects.filter(email=user.email)[0]
+            profile = UserProfile.objects.filter(user=present_user)[0]
             profile.linkedin_profile = sociallogin.account.get_profile_url()
             profile.short_bio = sociallogin.account.extra_data["headline"],
             profile.save()
