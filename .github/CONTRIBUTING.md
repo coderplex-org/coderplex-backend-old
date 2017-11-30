@@ -123,7 +123,7 @@ We welcome pull requests from beginners and django developers alike!
    ```
 1. Run the Fixtures for adding Social Applications
     ```bash
-    python webapp/manage.py loaddata authentication/fixtures/social_applications.json
+    python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
    ```   
 1. Start the development server
    ```bash
