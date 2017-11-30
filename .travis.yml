@@ -23,6 +23,8 @@ install:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 
+  - python webapp/manage.py makemigrations
+
   - python webapp/manage.py migrate
 
   - python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
