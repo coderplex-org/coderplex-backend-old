@@ -12,9 +12,7 @@ services:
 
 env:
 
-  - DJANGO_VERSION=1.11.7
-
-  - DB=postgresql
+  - DJANGO_VERSION=1.11.7 DB=postgresql
 
 install:
 
