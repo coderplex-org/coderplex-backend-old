@@ -34,8 +34,9 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
         print("extra_data", sociallogin.account.extra_data)
 
         avatar_url = sociallogin.account.get_avatar_url()
-        profile, created = UserProfile.objects.get_or_create(user=user)
-
+        present_user  = User.objects.get(email=user.email)
+        profile, created = UserProfile.objects.get_or_create(user=present_user)
+        print(profile, created)
         if sociallogin.account.provider == 'github':
             present_user = User.objects.filter(email=user.email)[0]
             profile = UserProfile.objects.filter(user=present_user)[0]
