@@ -1,0 +1,36 @@
+language: python
+
+python:
+
+- "3.5"
+
+- "3.6"
+
+services:
+
+  - postgresql
+
+env:
+
+  - DJANGO_VERSION=1.11.7
+
+  - DB=postgresql
+
+install:
+
+  - pip install -r requirements.txt
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+
+  - python webapp/manage.py migrate
+
+  - python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
+
+script:
+
+- python webapp/manage.py test
+
+after_success:
+
+- coveralls
