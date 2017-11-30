@@ -54,7 +54,6 @@ We welcome pull requests from beginners and django developers alike!
 ### Proposing a Change
 
 1. Open a new issue if you would like report a bug or suggest improvements.
-1. Follow this [Issue Template](ISSUE_TEMPLATE.md)
 1. Please wait for core team members to comment on the thread. This lets us reach an agreement on your proposal before you put significant effort into it.
 
 ### Prerequisites
@@ -124,7 +123,7 @@ We welcome pull requests from beginners and django developers alike!
    ```
 1. Run the Fixtures for adding Social Applications
     ```bash
-    python webapp/manage.py loaddata authentication/fixtures/social_applications.json
+    python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
    ```   
 1. Start the development server
    ```bash
@@ -181,7 +180,6 @@ We welcome pull requests from beginners and django developers alike!
 1. Push the code to your fork.
 1. Raise the pull request from your created branch to `develop` branch of coderplex. [why develop instead of master branch?](https://www.atlassian.com/git/tutorials/comparing-workflows)
 1. Take some time to give a brief description of the work you have done.
-1. Follow the [Pull Request Template](PULL_REQUEST_TEMPLATE.md)
 
 #### After submitting
 
