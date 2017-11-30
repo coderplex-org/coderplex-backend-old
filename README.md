@@ -1,6 +1,6 @@
 # Coderplex Backend
 
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/coderplex/coderplex/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/coderplex/coderplex/blob/master/LICENSE) [![Coverage Status](https://coveralls.io/repos/github/pbteja1998/coderplex-backend/badge.svg?branch=develop)](https://coveralls.io/github/pbteja1998/coderplex-backend?branch=develop)
 
 ## Follow our community here at [https://www.coderplex.org](https://www.coderplex.org)
 
