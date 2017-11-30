@@ -66,3 +66,4 @@ class ChapterViewSet(viewsets.ModelViewSet):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
 
+
