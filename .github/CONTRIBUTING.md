@@ -18,7 +18,7 @@ Coderplex web application comprises of two repositories :
   - [Sending a Pull Request](#sending-a-pull-request)
     - [Running Locally](#running-locally)
         - [Notes](#notes)
-    - [Docker Deployment in production](#docker-deployment-in-production)
+    - [For Production](#for-production-contributors-can-ignore-this)
     - [Before submitting](#before-submitting)
     - [Submitting PullRequest](#submitting-pullrequest)
     - [After submitting](#after-submitting)
