@@ -1,7 +1,7 @@
 # Coderplex Backend
 
 [![flake8 code style](https://img.shields.io/badge/code_style-flake8-5ed9c7.svg)](http://flake8.pycqa.org/en/latest/) [![formatted with yapf](https://img.shields.io/badge/code_formatted_with-yapf-ff69b4.svg)](https://github.com/google/yapf) [![Build Status](https://travis-ci.org/coderplex/coderplex-backend.svg?branch=develop)](https://travis-ci.org/coderplex/coderplex-backend) [![Requirements Status](https://requires.io/github/coderplex/coderplex-backend/requirements.svg?branch=develop)](https://requires.io/github/coderplex/coderplex-backend/requirements/?branch=develop)
- [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/coderplex/coderplex/blob/master/LICENSE)
+ [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/coderplex/coderplex-backend/blob/develop/LICENSE)
 
 ## Follow our community here at [https://www.coderplex.org](https://www.coderplex.org)
 
