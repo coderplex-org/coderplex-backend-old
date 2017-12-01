@@ -160,8 +160,14 @@ We welcome pull requests from beginners and django developers alike!
 
 1. From your fork, create a [branch](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) and name it. eg. `typo-in-readme`
 1. If you have added any new packages, you should add those in requirements
+
+   For example, if you have installed `XYZ` package using `pip` in the following way
    ```bash
-   pip freeze > requirements/requirements.txt
+    pip install XYZ   
+   ```
+   Then you can add `XYZ` to requirements in the following way.
+   ```bash
+    pip freeze | grep XYZ >> requirements/requirements.txt
    ```
 1. Remove the local `sqlite` database
    ```bash
