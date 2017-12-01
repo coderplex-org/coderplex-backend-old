@@ -8,22 +8,23 @@ Coderplex web application comprises of two repositories :
 
 ## Table Of Contents
 
-- [Code of Conduct](#code-of-conduct)
-- [Open Development](#open-development)
-- [Branching Model](#branching-model)
-- [Development Workflow](#development-workflow)
-  - [Work on Issues](#work-on-issues)
-  - [Proposing a Change](#proposing-a-change)
-  - [Prerequisites](#prerequisites)
-  - [Sending a Pull Request](#sending-a-pull-request)
-    - [Running Locally](#running-locally)
-        - [Notes](#notes)
-    - [For Production](#for-production-contributors-can-ignore-this)
-    - [Before submitting](#before-submitting)
-    - [Submitting PullRequest](#submitting-pullrequest)
-    - [After submitting](#after-submitting)
-      - [Received a review request](#received-a-review-request)
-  - [How to get in touch](#how-to-get-in-touch)
+* [Code of Conduct](#code-of-conduct)
+* [Open Development](#open-development)
+* [Branching Model](#branching-model)
+* [Development Workflow](#development-workflow)
+  * [Work on Issues](#work-on-issues)
+  * [Proposing a Change](#proposing-a-change)
+  * [Prerequisites](#prerequisites)
+  * [Sending a Pull Request](#sending-a-pull-request)
+    * [Running Locally](#running-locally)
+      * [Notes](#notes)
+    * [For Production](#for-production-contributors-can-ignore-this)
+    * [Before submitting](#before-submitting)
+    * [Submitting PullRequest](#submitting-pullrequest)
+    * [After submitting](#after-submitting)
+      * [Received a review request](#received-a-review-request)
+  * [How to get in touch](#how-to-get-in-touch)
+
 
 ## Code of Conduct
 
@@ -69,7 +70,7 @@ We welcome pull requests from beginners and django developers alike!
 
 1. [VirtualEnv](https://virtualenv.pypa.io/en/stable/)
 
-   * Installing instructions are at [official docs](https://virtualenv.pypa.io/en/stable/installation/).   
+   * Installing instructions are at [official docs](https://virtualenv.pypa.io/en/stable/installation/).
 
 1. [Git](https://git-scm.com/download/linux) (Familiarity with git is mandatory).
 
@@ -95,10 +96,14 @@ We welcome pull requests from beginners and django developers alike!
 1. Activate venv
    ```bash
     source venv/bin/activate
-   ```   
+   ```
 1. Install the requirements
    ```bash
     pip install -r requirements/requirements.txt
+   ```
+1. Install pre-commit into your git hooks. pre-commit will now run on every commit. Every time you clone a project that is using pre-commit running `pre-commit install` should always be the first thing you do after installing requirements
+   ```bash
+    pre-commit install
    ```
 1. Add an environment variable `EMAIL_HOST_USER`
    ```bash
@@ -113,32 +118,34 @@ We welcome pull requests from beginners and django developers alike!
     source ~/.bashrc
    ```
 1. Run the migrations
-    ```bash
-    python webapp/manage.py makemigrations
-    python webapp/manage.py migrate
-   ```   
+   ```bash
+   python webapp/manage.py makemigrations
+   python webapp/manage.py migrate
+   ```
 1. Create a SuperUser
-    ```bash
-    python webapp/manage.py createsuperuser
+   ```bash
+   python webapp/manage.py createsuperuser
    ```
 1. Run the Fixtures for adding Social Applications
-    ```bash
-    python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
-   ```   
+   ```bash
+   python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
+   ```
 1. Start the development server
+
    ```bash
     python webapp/manage.py runserver
-   ```   
+   ```
+
    You can now open the App at `localhost:8000` in your browser
-   
-##### Notes   
+
+##### Notes
+
 1. You can see all the implemented APIs in the route `/api-docs`. Any new api that you will create will be automatically appear in `/api-docs` route.
-1. To get `code` that will be used to in the `GitHub Login API`, run this [url](https://github.com/login/oauth/authorize?scope=user:email&client_id=97d600c693730ed91ac0)
-   in the browser and authorize, then the `code` will be appended as a url param to the redirected_url 
-1. To get `code` that will be used to in the `LinkedIn Login API`, run this [url](https://www.linkedin.com/oauth/v2/authorization?client_id=81ptws4wm9kflx&response_type=code&redirect_uri=http://127.0.0.1:8000/callback)
-   in the browser and authorize, then the `code` will be appended as a url param to the redirected_url
-       
+1. To get `code` that will be used to in the `GitHub Login API`, run this [url](https://github.com/login/oauth/authorize?scope=user:email&client_id=97d600c693730ed91ac0) in the browser and authorize, then the `code` will be appended as a url param to the redirected_url
+1. To get `code` that will be used to in the `LinkedIn Login API`, run this [url](https://www.linkedin.com/oauth/v2/authorization?client_id=81ptws4wm9kflx&response_type=code&redirect_uri=http://127.0.0.1:8000/callback) in the browser and authorize, then the `code` will be appended as a url param to the redirected_url
+
 #### For Production (Contributors can ignore this)
+
 1. Change `client_id` and `client_secret` of social applications
 1. Add environment variables `GITHUB_CALLBACK_URL` and `LINKEDIN_CALLBACK_URL` and set those with `<base_url> + "/callback"`
 1. Docker build
@@ -148,30 +155,30 @@ We welcome pull requests from beginners and django developers alike!
 1. Docker run
    ```bash
     docker run --name coderplex-production  -d -p 8000:8000 production
-   ```   
+   ```
 
 #### Before submitting
 
 1. From your fork, create a [branch](https://help.github.com/articles/creating-and-deleting-branches-within-your-repository/) and name it. eg. `typo-in-readme`
 1. If you have added any new packages, you should add those in requirements
-    ```bash
-    pip freeze > requirements/requirements.txt
-    ```
+   ```bash
+   pip freeze > requirements/requirements.txt
+   ```
 1. Remove the local `sqlite` database
-    ```bash
-    rm webapp/coderplex_apis/db.sqlite3
-    ```
+   ```bash
+   rm webapp/coderplex_apis/db.sqlite3
+   ```
 1. Run the migrations
-    ```bash
-    python webapp/manage.py makemigrations
-    python webapp/manage.py migrate
-    ```    
+   ```bash
+   python webapp/manage.py makemigrations
+   python webapp/manage.py migrate
+   ```
 1. If you’ve fixed a bug or added code that should be tested, add tests!
 1. Ensure that all tests pass
    ```bash
     python webapp/manage.py test
    ```
-1. If any documentation is needed, add docs    
+1. If any documentation is needed, add docs
 1. Add and commit your code. Please give meaningful commit messages.
 
 #### Submitting PullRequest

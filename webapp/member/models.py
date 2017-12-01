@@ -4,6 +4,7 @@ from allauth.account.signals import user_signed_up
 from django.dispatch import receiver
 from django.contrib.auth import login
 
+
 class UserProfile(models.Model):
     """
     This model is an extension of the User model that is inbuilt in django.
@@ -11,30 +12,43 @@ class UserProfile(models.Model):
     """
     user = models.OneToOneField(User, related_name="user")
     avatar = models.URLField(max_length=100, blank=True, null=True)
-    mobile_number = models.CharField(max_length=20, blank=True, null=True, default=None)
-    short_bio = models.CharField(max_length=255, blank=True, null=True, default=None)
+    mobile_number = models.CharField(
+        max_length=20, blank=True, null=True, default=None)
+    short_bio = models.CharField(
+        max_length=255, blank=True, null=True, default=None)
     job_status = models.NullBooleanField(blank=True, null=True, default=None)
-    company_name = models.CharField(max_length=50, blank=True, null=True, default=None)
-    looking_for_job = models.NullBooleanField(blank=True, null=True, default=None)
-    github_profile = models.URLField(max_length=75, blank=True, null=True, default=None)
-    facebook_profile = models.URLField(max_length=75, blank=True, null=True, default=None)
-    twitter_profile = models.URLField(max_length=75, blank=True, null=True, default=None)
-    linkedin_profile = models.URLField(max_length=75, blank=True, null=True, default=None)
-    codepen_profile = models.URLField(max_length=75, blank=True, null=True, default=None)
-    discord_profile = models.CharField(max_length=25, blank=True, null=True, default=None)
-    familiar_technologies = models.CharField(max_length=255, blank=True, null=True, default=None)
-    interested_technologies = models.CharField(max_length=255, blank=True, null=True, default=None)
+    company_name = models.CharField(
+        max_length=50, blank=True, null=True, default=None)
+    looking_for_job = models.NullBooleanField(
+        blank=True, null=True, default=None)
+    github_profile = models.URLField(
+        max_length=75, blank=True, null=True, default=None)
+    facebook_profile = models.URLField(
+        max_length=75, blank=True, null=True, default=None)
+    twitter_profile = models.URLField(
+        max_length=75, blank=True, null=True, default=None)
+    linkedin_profile = models.URLField(
+        max_length=75, blank=True, null=True, default=None)
+    codepen_profile = models.URLField(
+        max_length=75, blank=True, null=True, default=None)
+    discord_profile = models.CharField(
+        max_length=25, blank=True, null=True, default=None)
+    familiar_technologies = models.CharField(
+        max_length=255, blank=True, null=True, default=None)
+    interested_technologies = models.CharField(
+        max_length=255, blank=True, null=True, default=None)
+
 
 @receiver(user_signed_up)
 def retrieve_social_data(request, user, sociallogin=None, **kwargs):
     """Signal, that gets extra data from sociallogin and put it to profile."""
 
     if sociallogin:
-        print("provider",sociallogin.account.provider)
+        print("provider", sociallogin.account.provider)
         print("extra_data", sociallogin.account.extra_data)
 
         avatar_url = sociallogin.account.get_avatar_url()
-        present_user  = User.objects.get(email=user.email)
+        present_user = User.objects.get(email=user.email)
         profile, created = UserProfile.objects.get_or_create(user=present_user)
         print(profile, created)
         if sociallogin.account.provider == 'github':
@@ -53,4 +67,4 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
             profile.save()
 
         # login(request, user)
-    # in this signal I can retrieve the obj from SocialAccount
+        # in this signal I can retrieve the obj from SocialAccount

@@ -14,4 +14,3 @@ WORKDIR /webapp
 RUN pip install -r /requirements/requirements.txt
 RUN pip install uwsgi
 RUN python manage.py migrate
-

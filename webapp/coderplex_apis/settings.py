@@ -15,13 +15,11 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'it0duspa6^cxb*&om!3t$jo!4*17nvr61w7z_^1rz**0(um+1!'
-
 
 BUILD_ENV = os.environ.get('BUILD_ENV', 'local')
 
@@ -30,34 +28,17 @@ if BUILD_ENV == 'production':
 else:
     from .config.localhost import *
 
-
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
-    
-    'rest_framework',
-    'rest_framework.authtoken',
-    'rest_auth',
-    'rest_framework_swagger',
-
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
-
-    'allauth.socialaccount',
+    'django.contrib.admin', 'django.contrib.auth',
+    'django.contrib.contenttypes', 'django.contrib.sessions',
+    'django.contrib.messages', 'django.contrib.staticfiles',
+    'django.contrib.sites', 'rest_framework', 'rest_framework.authtoken',
+    'rest_auth', 'rest_framework_swagger', 'allauth', 'allauth.account',
+    'rest_auth.registration', 'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.linkedin_oauth2',
-
-    'corsheaders',
-
-    'member',
+    'allauth.socialaccount.providers.linkedin_oauth2', 'corsheaders', 'member',
     'books'
 ]
 
@@ -97,19 +78,22 @@ WSGI_APPLICATION = 'coderplex_apis.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -124,13 +108,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -138,15 +120,10 @@ STATICFILES_FINDERS = (
 )
 
 REST_FRAMEWORK = {
-    'DEFAULT_PARSER_CLASSES': (
-        'rest_framework.parsers.JSONParser',
-    ),
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser', ),
+    'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer', ),
+    'DEFAULT_PERMISSION_CLASSES':
+    ('rest_framework.permissions.IsAuthenticated', ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
@@ -185,9 +162,8 @@ SOCIALACCOUNT_PROVIDERS = \
             }
     }
 
-
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER' : "member.serializers.UserDetailSerializer"
+    'USER_DETAILS_SERIALIZER': "member.serializers.UserDetailSerializer"
 }
 
 AUTH_PROFILE_MODULE = 'member.UserProfile'
