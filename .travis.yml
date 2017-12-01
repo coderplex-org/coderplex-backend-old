@@ -27,7 +27,7 @@ before_script:
 
   - python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
 
-  - pre-commit run --all-files
+  - git diff-tree --no-commit-id --name-only -r $REVISION | xargs pre-commit run --files
 
 script:
 
