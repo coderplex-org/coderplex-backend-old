@@ -1,7 +1,12 @@
 from .models import UserProfile, User
-from .serializers import UserEditSerializer, UserProfileSerializer, UserProfileEditSerializer, UserDetailSerializer
+from .serializers import UserEditSerializer, \
+    UserProfileSerializer, \
+    UserProfileEditSerializer, \
+    UserDetailSerializer, \
+    UserEnrollementsSerializer
 from rest_framework.response import Response
 from rest_framework import mixins, generics
+from books.models import Book
 
 # Create your views here.
 
@@ -45,3 +50,45 @@ class UserProfileView(mixins.RetrieveModelMixin, generics.GenericAPIView):
 
         else:
             return Response(serializer.errors)
+
+
+class UserEnrollmentsView(mixins.RetrieveModelMixin, generics.GenericAPIView):
+
+    model = UserProfile
+    serializer_class = UserEnrollementsSerializer
+
+    def get(self, request, *args, **kwargs):
+        user_profile, created = UserProfile.objects.get_or_create(
+            user=request.user)
+        serializer = UserEnrollementsSerializer(user_profile)
+        return Response(serializer.data)
+
+
+class UserEnrollmentsAddView(mixins.RetrieveModelMixin,
+                             generics.GenericAPIView):
+
+    model = UserProfile
+    serializer_class = UserEnrollementsSerializer
+
+    def post(self, request, *args, **kwargs):
+        user_profile, created = UserProfile.objects.get_or_create(
+            user=request.user)
+        book = Book.objects.filter(slug=request.data["slug"])[0]
+        user_profile.enrollments.add(book)
+        serializer = UserEnrollementsSerializer(user_profile)
+        return Response(serializer.data)
+
+
+class UserEnrollmentsDeleteView(mixins.RetrieveModelMixin,
+                                generics.GenericAPIView):
+
+    model = UserProfile
+    serializer_class = UserEnrollementsSerializer
+
+    def post(self, request, *args, **kwargs):
+        user_profile, created = UserProfile.objects.get_or_create(
+            user=request.user)
+        book = Book.objects.filter(slug=request.data["slug"])[0]
+        user_profile.enrollments.remove(book)
+        serializer = UserEnrollementsSerializer(user_profile)
+        return Response(serializer.data)

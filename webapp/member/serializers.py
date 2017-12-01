@@ -81,3 +81,11 @@ class UserProfileEditSerializer(serializers.ModelSerializer):
             'interested_technologies', instance.interested_technologies)
         instance.save()
         return instance
+
+
+class UserEnrollementsSerializer(serializers.ModelSerializer):
+    user = UserDetailSerializer()
+
+    class Meta:
+        model = UserProfile
+        fields = ('user', 'enrollments')
