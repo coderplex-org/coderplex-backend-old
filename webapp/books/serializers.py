@@ -19,8 +19,8 @@ class ChapterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Chapter
-        fields = ('id', 'title', 'slug', 'content', 'updated_at',
-                  'updated_by', 'created_by')
+        fields = ('id', 'title', 'slug', 'content', 'updated_at', 'updated_by',
+                  'created_by')
 
 
 class PageSerializer(serializers.ModelSerializer):
@@ -29,8 +29,8 @@ class PageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
-        fields = ('id', 'title', 'slug', 'content', 'updated_at',
-                  'updated_by', 'created_by')
+        fields = ('id', 'title', 'slug', 'content', 'updated_at', 'updated_by',
+                  'created_by')
 
 
 class PageDetailSerializer(serializers.ModelSerializer):
@@ -39,8 +39,8 @@ class PageDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Page
-        fields = ('id', 'title', 'slug', 'content', 'updated_at',
-                  'updated_by', 'created_by')
+        fields = ('id', 'title', 'slug', 'content', 'updated_at', 'updated_by',
+                  'created_by')
 
 
 class PageShortSerializer(serializers.ModelSerializer):
