@@ -1,9 +1,9 @@
 from allauth.socialaccount.providers.github.views import GitHubOAuth2Adapter
-from allauth.socialaccount.providers.linkedin_oauth2.views import LinkedInOAuth2Adapter
+from allauth.socialaccount.providers.linkedin_oauth2.views import \
+    LinkedInOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from django.conf import settings
-from rest_framework import permissions
 
 
 class GithubLogin(SocialLoginView):

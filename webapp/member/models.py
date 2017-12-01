@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from allauth.account.signals import user_signed_up
 from django.dispatch import receiver
-from django.contrib.auth import login
 
 
 class UserProfile(models.Model):
@@ -49,7 +48,8 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
 
         avatar_url = sociallogin.account.get_avatar_url()
         present_user = User.objects.get(email=user.email)
-        profile, created = UserProfile.objects.get_or_create(user=present_user)
+        profile, created = UserProfile.objects.get_or_create(
+            user=present_user, avatar_url=avatar_url)
         print(profile, created)
         if sociallogin.account.provider == 'github':
             present_user = User.objects.filter(email=user.email)[0]

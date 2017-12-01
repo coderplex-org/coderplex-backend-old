@@ -1,5 +1,8 @@
 from .models import UserProfile, User
-from .serializers import UserEditSerializer, UserProfileSerializer, UserProfileEditSerializer, UserDetailSerializer
+from .serializers import UserEditSerializer, \
+                         UserProfileSerializer, \
+                         UserProfileEditSerializer, \
+                         UserDetailSerializer
 from rest_framework.response import Response
 from rest_framework import mixins, generics
 
