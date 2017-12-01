@@ -31,7 +31,7 @@ before_script:
 
 script:
 
-- python webapp/manage.py test
+  - coverage run --source=authentication, member, books, coderplex_apis webapp/manage.py test
 
 after_success:
 
