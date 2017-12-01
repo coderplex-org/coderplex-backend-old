@@ -31,7 +31,7 @@ before_script:
 
 script:
 
-  - coverage run --omit venv/* webapp/manage.py test
+  - coverage run webapp/manage.py test
 
 after_success:
 
