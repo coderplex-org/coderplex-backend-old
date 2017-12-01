@@ -27,8 +27,6 @@ before_script:
 
   - python webapp/manage.py loaddata webapp/authentication/fixtures/social_applications.json
 
-  - pre-commit run --all-files
-
 script:
 
 - python webapp/manage.py test
