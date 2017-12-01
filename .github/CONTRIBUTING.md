@@ -100,7 +100,7 @@ We welcome pull requests from beginners and django developers alike!
    ```bash
     pip install -r requirements/requirements.txt
    ```
-1. Install pre-commit into your git hooks. pre-commit will now run on every commit. Every time you clone a project that is using pre-comm it running `pre-commit install` should always be the first thing you do after installing requirements
+1. Install pre-commit into your git hooks. pre-commit will now run on every commit. Every time you clone a project that is using pre-commit running `pre-commit install` should always be the first thing you do after installing requirements
    ```bash
     pre-commit install
    ```
