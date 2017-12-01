@@ -8,16 +8,16 @@ class Book(models.Model):
     slug = models.SlugField()
     image = models.ImageField(default=None, null=True, blank=True)
     description = models.TextField()
-    
+
     created_by = models.ForeignKey('auth.User')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_by = models.ForeignKey('auth.User', related_name="updated_books")
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return self.title
-    
-    
+
+
 class Chapter(models.Model):
     title = models.CharField(max_length=25, db_index=True)
     slug = models.SlugField()
@@ -40,11 +40,11 @@ class Page(models.Model):
     content = models.TextField()
     chapter = models.ForeignKey(Chapter, default=None, null=True)
     position = models.PositiveIntegerField(default=None, null=True)
-    
+
     created_by = models.ForeignKey('auth.User')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_by = models.ForeignKey('auth.User', related_name="updated_pages")
     updated_at = models.DateTimeField(auto_now=True)
-    
+
     def __str__(self):
         return self.title

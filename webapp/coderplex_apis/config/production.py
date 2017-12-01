@@ -4,7 +4,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = False
-ALLOWED_HOSTS = [ 'coderplex.org', '*.coderplex.org']
+ALLOWED_HOSTS = ['coderplex.org', '*.coderplex.org']
 CORS_ORIGIN_WHITELIST = ['coderplex.org', '*.coderplex.org']
 
 #Database

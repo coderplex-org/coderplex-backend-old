@@ -16,5 +16,7 @@ DATABASES = {
     }
 }
 
-LINKEDIN_CALLBACK_URL = os.environ.get('LINKEDIN_CALLBACK_URL','http://127.0.0.1:8000/callback')
-GITHUB_CALLBACK_URL = os.environ.get('GITHUB_CALLBACK_URL', 'http://127.0.0.1:8000/callback')
+LINKEDIN_CALLBACK_URL = os.environ.get('LINKEDIN_CALLBACK_URL',
+                                       'http://127.0.0.1:8000/callback')
+GITHUB_CALLBACK_URL = os.environ.get('GITHUB_CALLBACK_URL',
+                                     'http://127.0.0.1:8000/callback')

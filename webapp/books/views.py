@@ -21,48 +21,46 @@ class BookViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         serializer = BookDetailSerializer(instance)
         return Response(serializer.data)
-    
 
-class BookDetailView(mixins.RetrieveModelMixin,
-                    generics.GenericAPIView):
+
+class BookDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     serializer_class = BookDetailSerializer
     queryset = Book.objects.all()
     lookup_field = 'slug'
-    
+
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
 
-class ChapterDetailView(mixins.RetrieveModelMixin,
-                    generics.GenericAPIView):
+class ChapterDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     serializer_class = ChapterDetailSerializer
     queryset = Chapter.objects.all()
-    
+
     def get_object(self):
-        return get_object_or_404(Chapter,
-                                 book__slug=self.kwargs['book'],
-                                 slug=self.kwargs['chapter'])
-    
+        return get_object_or_404(
+            Chapter,
+            book__slug=self.kwargs['book'],
+            slug=self.kwargs['chapter'])
+
     def get(self, request, book, chapter, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
 
 
-class PageDetailView(mixins.RetrieveModelMixin,
-                        generics.GenericAPIView):
+class PageDetailView(mixins.RetrieveModelMixin, generics.GenericAPIView):
     serializer_class = PageDetailSerializer
     queryset = Page.objects.all()
-    
+
     def get_object(self):
-        return get_object_or_404(Page,
-                                 chapter__slug=self.kwargs['chapter'],
-                                 slug=self.kwargs['slug'])
-    
+        return get_object_or_404(
+            Page,
+            chapter__slug=self.kwargs['chapter'],
+            slug=self.kwargs['slug'])
+
     def get(self, request, chapter, slug, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
-    
-    
+
+
 class ChapterViewSet(viewsets.ModelViewSet):
     model = Chapter
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
-

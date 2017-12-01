@@ -1,6 +1,6 @@
 # Coderplex Backend
 
-[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/coderplex/coderplex/blob/master/LICENSE)
+[![flake8 code style](https://img.shields.io/badge/code_style-flake8-5ed9c7.svg)](http://flake8.pycqa.org/en/latest/) [![formatted with yapf](https://img.shields.io/badge/code_formatted_with-yapf-ff69b4.svg)](https://github.com/google/yapf) [![Build Status](https://travis-ci.org/coderplex/coderplex-backend.svg?branch=develop)](https://travis-ci.org/coderplex/coderplex-backend) [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://github.com/coderplex/coderplex/blob/master/LICENSE)
 
 ## Follow our community here at [https://www.coderplex.org](https://www.coderplex.org)
 
