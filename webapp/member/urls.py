@@ -7,5 +7,6 @@ urlpatterns = [
         views.UserEnrollmentsDeleteView.as_view()),
     url(r'^user/enrollments/add', views.UserEnrollmentsAddView.as_view()),
     url(r'^user/enrollments', views.UserEnrollmentsView.as_view()),
-    url(r'^user', views.UserDetailView.as_view()),
+    url(r'^user/books', views.UserBooksView.as_view()),
+    url(r'^user/$', views.UserDetailView.as_view()),
 ]

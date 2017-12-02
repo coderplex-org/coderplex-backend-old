@@ -1,5 +1,6 @@
 from .models import User, UserProfile
 from rest_framework import serializers
+from books.serializers import UserBookDetailSerializer
 
 
 class UserShortSerializer(serializers.ModelSerializer):
@@ -85,7 +86,17 @@ class UserProfileEditSerializer(serializers.ModelSerializer):
 
 class UserEnrollementsSerializer(serializers.ModelSerializer):
     user = UserDetailSerializer()
+    enrollments = UserBookDetailSerializer(many=True, read_only=True)
 
     class Meta:
         model = UserProfile
         fields = ('user', 'enrollments')
+
+
+class UserBooksSerializer(serializers.ModelSerializer):
+
+    books = UserBookDetailSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'books')

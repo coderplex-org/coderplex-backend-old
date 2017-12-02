@@ -9,7 +9,7 @@ class Book(models.Model):
     image = models.ImageField(default=None, null=True, blank=True)
     description = models.TextField()
 
-    created_by = models.ForeignKey('auth.User')
+    created_by = models.ForeignKey('auth.User', related_name='books')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_by = models.ForeignKey('auth.User', related_name="updated_books")
     updated_at = models.DateTimeField(auto_now=True)

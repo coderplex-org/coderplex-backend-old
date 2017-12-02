@@ -3,7 +3,8 @@ from .serializers import UserEditSerializer, \
     UserProfileSerializer, \
     UserProfileEditSerializer, \
     UserDetailSerializer, \
-    UserEnrollementsSerializer
+    UserEnrollementsSerializer, \
+    UserBooksSerializer
 from rest_framework.response import Response
 from rest_framework import mixins, generics
 from books.models import Book
@@ -91,4 +92,16 @@ class UserEnrollmentsDeleteView(mixins.RetrieveModelMixin,
         book = Book.objects.filter(slug=request.data["slug"])[0]
         user_profile.enrollments.remove(book)
         serializer = UserEnrollementsSerializer(user_profile)
+        return Response(serializer.data)
+
+
+class UserBooksView(mixins.RetrieveModelMixin, generics.GenericAPIView):
+    model = User
+    serializer_class = UserBooksSerializer
+
+    def get(self, request, *args, **kwargs):
+        serializer = UserBooksSerializer(
+            request.user, context={
+                'request': request
+            })
         return Response(serializer.data)
