@@ -32,7 +32,3 @@ before_script:
 script:
 
   - coverage run webapp/manage.py test
-
-after_success:
-
-- coveralls
