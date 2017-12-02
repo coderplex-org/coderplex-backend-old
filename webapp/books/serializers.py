@@ -1,7 +1,5 @@
 from rest_framework import serializers
-# from member.serializers import UserShortSerializer
 from .models import Book, Chapter, Page
-
 from member.models import User
 
 
