@@ -1,13 +1,10 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Book, Chapter, Page
 from .serializers import BookSerializer, BookDetailSerializer, \
     ChapterSerializer, ChapterDetailSerializer, PageDetailSerializer
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework import mixins, generics
 from rest_framework.generics import get_object_or_404
-from django.db.models.query import QuerySet
 
 # Create your views here.
 

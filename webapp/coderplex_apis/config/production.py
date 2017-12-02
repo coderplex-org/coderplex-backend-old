@@ -7,7 +7,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['coderplex.org', '*.coderplex.org']
 CORS_ORIGIN_WHITELIST = ['coderplex.org', '*.coderplex.org']
 
-#Database
+# Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
