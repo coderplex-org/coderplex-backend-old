@@ -7,7 +7,7 @@
 
 <!-- Checked checkbox should look like this: [x] -->
 
-* [ ] I have searched the [issues](https://github.com/coderplex/coderplex/issues) of this repository and believe that this is not a duplicate.
+* [ ] I have searched the [issues](https://github.com/coderplex/coderplex-backend/issues) of this repository and believe that this is not a duplicate.
 
 # Expected Behavior
 
