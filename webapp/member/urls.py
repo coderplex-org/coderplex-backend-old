@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^user$', views.UserDetailView.as_view()),
+    url(r'^accounts/profile/$', views.UserProfileView.as_view()),
     url(r'^user/profile$', views.UserProfileView.as_view()),
     url(r'^user/enrollments$', views.UserEnrollmentsView.as_view()),
     url(r'^user/enrollments/add$', views.UserEnrollmentsCreateView.as_view()),

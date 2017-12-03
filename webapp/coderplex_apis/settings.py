@@ -123,9 +123,8 @@ STATICFILES_FINDERS = (
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': ('rest_framework.parsers.JSONParser', ),
     'DEFAULT_RENDERER_CLASSES': ('rest_framework.renderers.JSONRenderer', ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',
-    ),
+    'DEFAULT_PERMISSION_CLASSES':
+    ('rest_framework.permissions.IsAuthenticated', ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
