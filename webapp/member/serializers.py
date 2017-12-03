@@ -84,9 +84,14 @@ class UserProfileEditSerializer(serializers.ModelSerializer):
         return instance
 
 
+class UserPrimaryKeySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('pk', 'username')
+
+
 class UserEnrollementsSerializer(serializers.ModelSerializer):
-    user = UserDetailSerializer()
-    enrollments = UserBookDetailSerializer(many=True, read_only=True)
+    user = UserPrimaryKeySerializer()
 
     class Meta:
         model = UserProfile
