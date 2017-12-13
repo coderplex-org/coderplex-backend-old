@@ -3,7 +3,11 @@
 # input valid credentials before testing.
 import psycopg2
 test = psycopg2.connect(
-    database="", user="", password="", host="127.0.0.1", port="5432")
+    database="coderplex",
+    user="test",
+    password="test123",
+    host="127.0.0.1",
+    port="5432")
 cursor = test.cursor()
 cursor.execute(
     "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"
