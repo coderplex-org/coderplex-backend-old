@@ -55,6 +55,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'coderplex_apis.urls'
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'coderplex',
+        'USER': 'test',
+        'PASSWORD': 'test123',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
