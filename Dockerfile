@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM python:3.6
 MAINTAINER Ravi RT Merugu <rrmerugu@gmail.com>
 ENV PYTHONUNBUFFERED 1
 
