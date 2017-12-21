@@ -16,6 +16,17 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'coderplex',
+        'USER': 'test',
+        'PASSWORD': 'test123',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
 LINKEDIN_CALLBACK_URL = os.environ.get('LINKEDIN_CALLBACK_URL',
                                        'http://127.0.0.1:8000/callback')
 GITHUB_CALLBACK_URL = os.environ.get('GITHUB_CALLBACK_URL',

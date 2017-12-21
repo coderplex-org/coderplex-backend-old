@@ -17,6 +17,7 @@ Coderplex web application comprises of two repositories :
   * [Prerequisites](#prerequisites)
   * [Sending a Pull Request](#sending-a-pull-request)
     * [Running Locally](#running-locally)
+    * [Database Setup](#database-setup)
       * [Notes](#notes)
     * [For Production](#for-production-contributors-can-ignore-this)
     * [Before submitting](#before-submitting)
@@ -137,6 +138,37 @@ We welcome pull requests from beginners and django developers alike!
    ```
 
    You can now open the App at `localhost:8000` in your browser
+   
+
+####Database Setup
+1. Install PostgreSQL 
+   ```bash
+    sudo apt-get update
+    sudo apt-get install postgresql postgresql-contrib
+   ```   
+2. Creating User and Database
+   ```bash
+    sudo -u postgres createuser <username>
+    sudo -u postgres createdb <dbname>
+   ```   
+   Again there are multiple ways of creating a database. You can type 'psql' to enter the command line utility and do
+    ```bash
+    CREATE USER <user-name> with PASSWORD '<password>';
+    CREATE DATABASE <db-name>;
+   ```   
+3. Connecting to the database
+    ```bash
+    psql -h localhost -U <username> <db-name> 
+   ```   
+4. To view the tables used in the app
+    ```bash
+    SELECT table_name FROM information_schema.tables WHERE table_schema='public';
+   ```   
+5. To exit
+    ```bash
+    \q
+    exit
+   ```  
 
 ##### Notes
 

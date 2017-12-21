@@ -10,3 +10,4 @@ flake8==3.5.0
 pre-commit==1.4.1
 Pillow==4.3.0
 requires.io==0.2.6
+psycopg2==2.7.3.2
