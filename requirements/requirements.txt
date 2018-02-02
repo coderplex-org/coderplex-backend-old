@@ -1,5 +1,5 @@
 Django==1.11.7 # rq.filter: ==1.11.7
-django-allauth==0.34.0
+django-allauth==0.35.0
 django-cors-headers==2.1.0
 django-rest-auth==0.9.3
 django-rest-swagger==2.1.2
