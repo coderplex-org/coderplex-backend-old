@@ -5,7 +5,7 @@ django-rest-auth==0.9.3
 django-rest-swagger==2.1.2
 djangorestframework==3.7.7
 djangorestframework-jwt==1.11.0
-coverage==4.5
+coverage==4.5.1
 flake8==3.5.0
 pre-commit==1.6.0
 Pillow==5.0.0
