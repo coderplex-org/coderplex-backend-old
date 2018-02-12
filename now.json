@@ -1,0 +1,5 @@
+{
+  "name": "coderplex-api",
+  "alias": "coderplex-api.now.sh",
+  "dotenv": true
+}
