@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from allauth.account.signals import user_signed_up
 from django.dispatch import receiver
+from books.models import Book
 
 
 class UserProfile(models.Model):
@@ -36,6 +37,7 @@ class UserProfile(models.Model):
         max_length=255, blank=True, null=True, default=None)
     interested_technologies = models.CharField(
         max_length=255, blank=True, null=True, default=None)
+    enrollments = models.ManyToManyField(Book)
 
 
 @receiver(user_signed_up)
@@ -49,7 +51,7 @@ def retrieve_social_data(request, user, sociallogin=None, **kwargs):
         avatar_url = sociallogin.account.get_avatar_url()
         present_user = User.objects.get(email=user.email)
         profile, created = UserProfile.objects.get_or_create(
-            user=present_user, avatar_url=avatar_url)
+            user=present_user, avatar=avatar_url)
         print(profile, created)
         if sociallogin.account.provider == 'github':
             present_user = User.objects.filter(email=user.email)[0]

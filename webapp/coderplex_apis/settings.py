@@ -1,3 +1,4 @@
+# settings.py
 """
 Django settings for coderplex_apis project.
 
